@@ -131,7 +131,7 @@ void disp_matrix(void){
   printf("|\n");
   for (t=5;t<20;t++){
     for (i=5;i<20;i++){
-      printf("| %c ",matrix[t][i]);
+      printf("| %c ",matrix[i][t]);
     }
     printf("|\n");
     for (i=5;i<20;i++){
@@ -144,30 +144,93 @@ void disp_matrix(void){
 char check(void){
   int i,t;
   /*rows*/
-  for (i=5;i<20;i++){
-    for (t=5;t<20;t++){
-      if (matrix[i][t]==matrix[i][t+1]&&matrix[i][t]==matrix[i][t+2]&&matrix[i][t]==matrix[i][t+3]&&matrix[i][t]==matrix[i][t+4])
-	if (matrix[i][t]=='X'||matrix[i][t]=='O') return matrix[i][t];
+  for (i=4;i<16;i++){
+    for (t=4;t<16;t++){
+      if (matrix[i][t+1]==matrix[i][t+2]&&matrix[i][t+1]==matrix[i][t+3]&&matrix[i][t+1]==matrix[i][t+4]&&matrix[i][t+1]==matrix[i][t+5]){
+	if (matrix[i][t]!=matrix[i][t+1]){
+	  if (matrix[i][t]==' '){
+	    if (matrix[i][t+6]!=matrix[i][t+1]) {
+	      if (matrix[i][t+1]=='X'||matrix[i][t+1]=='O') return matrix[i][t+1];
+	    }
+	  }
+	  else {
+	    if (matrix[i][t+6]!=matrix[i][t+1]&&matrix[i][t+6]!=matrix[i][t]){
+	      if (matrix[i][t+1]=='X'||matrix[i][t+1]=='O') return matrix[i][t+1];
+	    }
+	  }
+	}
+      }
     }
   }
   /*columns*/
-  for (i=5;i<20;i++){
-    for (t=5;t<20;t++){
-      if (matrix[i][t]==matrix[i+1][t]&&matrix[i][t]==matrix[i+2][t]&&matrix[i][t]==matrix[i+3][t]&&matrix[i][t]==matrix[i+4][t])
-	if (matrix[i][t]=='X'||matrix[i][t]=='O') return matrix[i][t];
+  for (i=4;i<16;i++){
+    for (t=4;t<16;t++){
+      if (matrix[i+1][t]==matrix[i+2][t]&&matrix[i+1][t]==matrix[i+3][t]&&matrix[i+1][t]==matrix[i+4][t]&&matrix[i+1][t]==matrix[i+5][t]){
+	if (matrix[i][t]!=matrix[i+1][t]){
+	  if (matrix[i][t]==' '){
+	    if (matrix[i+6][t]!=matrix[i+1][t]){
+	      if (matrix[i+1][t]=='X'||matrix[i+1][t]=='O') return matrix[i+1][t];
+	    }
+	  }
+	  else {
+	    if (matrix[i+6][t]!=matrix[i+1][t]&&matrix[i+6][t]!=matrix[i][t]){
+	      if (matrix[i+1][t]=='X'||matrix[i+1][t]=='O') return matrix[i+1][t];
+	    }
+	  }
+	}
+      }
+	      
     }
   }
   /*diagonals*/
-  for (i=5;i<20;i++){
-    for (t=5;t<20;t++){
-      if(matrix[i][t]==matrix[i+1][t+1]&&matrix[i][t]==matrix[i+2][t+2]&&matrix[i][t]==matrix[i+3][t+3]&&matrix[i][t]==matrix[i+4][t+4])
-	if (matrix[i][t]=='X'||matrix[i][t]=='O') return matrix[i][t];
+  for (i=4;i<16;i++){
+    for (t=4;t<16;t++){
+      if(matrix[i+1][t+1]==matrix[i+2][t+2]&&matrix[i+1][t+1]==matrix[i+3][t+3]&&matrix[i+1][t+1]==matrix[i+4][t+4]&&matrix[i+1][t+1]==matrix[i+5][t+5]){
+	if (matrix[i][t]!=matrix[i+1][t+1]){
+	  if (matrix[i][t]==' '){
+	    if (matrix[i+6][t+6]!=matrix[i+1][t+1]){
+	      if (matrix[i+1][t+1]=='X'||matrix[i+1][t+1]=='O') return matrix[i+1][t+1];
+	    }
+	  }
+	  else {
+	    if (matrix[i+6][t+6]!=matrix[i+1][t+1]){
+	      if (matrix[i][t]=='X'||matrix[i][t]=='O'){
+		if (matrix[i+6][t+6]!=matrix[i][t]){
+		  if (matrix[i+1][t+1]=='X'||matrix[i+1][t+1]=='O') return matrix[i+1][t+1];
+		}
+	      }
+	      else {
+		if (matrix[i+1][t+1]=='X'||matrix[i+1][t+1]=='O') return matrix[i+1][t+1];
+	      }
+	    }
+	  }
+	}
+      }
     }
   }
-  for (i=19;i>4;i--){
-    for (t=5;t<20;t++){
-      if(matrix[i][t]==matrix[i-1][t+1]&&matrix[i][t]==matrix[i-2][t+2]&&matrix[i][t]==matrix[i-3][t+3]&&matrix[i][t]==matrix[i-4][t+4])
-	if (matrix[i][t]=='X'||matrix[i][t]=='O') return matrix[i][t];
+  for (i=15;i>3;i--){
+    for (t=4;t<16;t++){
+      if(matrix[i-1][t+1]==matrix[i-2][t+2]&&matrix[i-1][t+1]==matrix[i-3][t+3]&&matrix[i-1][t+1]==matrix[i-4][t+4]&&matrix[i-1][t+1]==matrix[i-5][t+5]){
+	if (matrix[i][t]!=matrix[i-1][t+1]){
+	  if (matrix[i][t]==' '){
+	    if (matrix[i-6][t+6]!=matrix[i-1][t+1]){
+	      if (matrix[i-1][t+1]=='X'||matrix[i-1][t+1]=='O') return matrix[i-1][t+1];
+	    }
+	  }
+	  else {
+	    if (matrix[i-6][t+6]!=matrix[i-1][t+1]){
+	      if (matrix[i][t]=='X'||matrix[i][t]=='O'){
+		if (matrix[i-6][t+6]!=matrix[i][t]){
+		  if (matrix[i-1][t+1]=='X'||matrix[i-1][t+1]=='O') return matrix[i-1][t+1];
+		}
+	      }
+	      else {
+		if (matrix[i-1][t+1]=='X'||matrix[i-1][t+1]=='O') return matrix[i-1][t+1];
+	      }
+	    }
+	  }
+	}
+      }
     }
   }
   return ' ';
