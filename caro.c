@@ -1,7 +1,7 @@
-/* A simple Tic Tac Toe game. */
+
 #include <stdio.h>
 #include <stdlib.h>
-char matrix[25][25]; /* the tic tac toe matrix */
+char matrix[25][25]; 
 char check(void);
 
 void init_matrix(void);
@@ -122,16 +122,7 @@ exit(0);
 else
 matrix[i][j] = 'O';
 }
-/* Display the matrix on the screen. */
-/*void disp_matrix(void)
-{
-int t;
-for(t=0; t<15; t++) {
-printf(" %c | %c | %c ",matrix[t][0],matrix[t][1], matrix [t][2]);
-if(t!=2) printf("\n---|---|---\n");
-}
-printf ( "\n");
-}*/
+
 void disp_matrix(void){
   int i,t;
   for (i=5;i<20;i++){
@@ -149,21 +140,7 @@ void disp_matrix(void){
     printf("|\n");
   }
 }
-/* See if there is a winner. */
-//char check(void)
-//{
-//int i;
-//for(i=0; i<15; i++) /* check rows */
-//if(matrix[i][0]==matrix[i][1] && matrix[i][0]==matrix[i][2]) return matrix[i][0];
-//for(i=0; i<15; i++) /* check columns */
-//if(matrix[0][i]==matrix[1][i] && matrix[0][i]==matrix[2][i]) return matrix[0] [i];
-/* test diagonals */
-//if(matrix[0] [0]==matrix[1][1] && matrix[1][1]==matrix[2][2])
-//return matrix[0][0];
-//if(matrix[0] [2]==matrix[1][1] && matrix[1] [1]==matrix[2][0])
-//return matrix[0][2];
-//return ' ';
-//}
+
 char check(void){
   int i,t;
   /*rows*/
