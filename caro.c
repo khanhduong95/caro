@@ -1,9 +1,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 char matrix[25][25]; 
 char check(void);
-
+int score1;
+int score2;
 void init_matrix(void);
 void get_player_move(void);
 void get_player_1_move(void);
@@ -15,6 +17,7 @@ int main(void)
 {
   char done;
   int choice;
+  char cont[]=" ";
   do {
     printf("This is the Caro game\n");
     printf("Please choose the game mode:\n");
@@ -24,38 +27,77 @@ int main(void)
   } while (choice!=1&&choice!=2);
   if (choice==1){
     printf("You will be playing against the computer.\n");
-    done = ' ';
-    init_matrix();
+
     do {
-      disp_matrix();
-      get_player_move();
-      done = check(); /* see if winner */
-      if(done!= ' ') break; /* winner!*/
-      get_computer_move ();
-      done = check(); /* see if winner */
-    } while(done== ' ');
-    if (done=='X') printf("You won!\n");
-    else printf("I won!!!!\n");
-    disp_matrix(); /* show final positions */
+      done = ' ';
+      init_matrix();
+      do {
+	printf("Player %d-%d Computer\n",score1,score2);
+	disp_matrix();
+	get_player_move();
+	done = check(); /* see if winner */
+	if(done!= ' ') break; /* winner!*/
+	printf("Player %d-%d Computer\n",score1,score2);
+	get_computer_move ();
+	done = check(); /* see if winner */
+      } while(done== ' ');
+      if (done=='X'){
+	printf("You won!\n");
+	++score1;
+      }
+      else {
+	printf("I won!!!!\n");
+	++score2;
+      }
+      printf("Player %d-%d Computer\n",score1,score2);
+      disp_matrix(); /* show final positions */
+      
+      printf("\nContinue? [Enter N to stop]\n");
+      scanf("%s",&cont);
+    } while (strcmp(cont,"N")!=0&&strcmp(cont,"n")!=0);
   }
   else {
-    printf("2 players will be playing.\n");
-    done=' ';
-    init_matrix();
+    char playerone[]=" ";
+    char playertwo[]=" ";
     do {
-      disp_matrix();
-      get_player_1_move();
-      done = check();
+      printf("Enter player 1's name: \n");
+      scanf("%s",&playerone);
+    
+      printf("Enter player 2's name: \n");
+      scanf("%s",&playertwo);
+    } while (strcmp(playerone,playertwo)==0||strcmp(playerone," ")==0||strcmp(playertwo," ")==0);
+    printf("2 players will be playing.\n");
 
-      if (done!=' ') break;
+    do {
+      done=' ';
+      init_matrix();
+      do {
+	printf("\n%s %d-%d %s\n",playerone,score1,score2,playertwo);
+	disp_matrix();
+	get_player_1_move();
+	done = check();
+	
+	if (done!=' ') break;
+	printf("\n%s %d-%d %s\n",playerone,score1,score2,playertwo);
+	disp_matrix();
+	
+	get_player_2_move();
+	done = check();
+      } while (done== ' ');
+      if (done=='X') {
+	printf("%s won!\n",playerone);
+	++score1;
+      }
+      else {
+	printf("%s won!\n",playertwo);
+	++score2;
+      }
+      printf("\n%s %d-%d %s\n",playerone,score1,score2,playertwo);
       disp_matrix();
       
-      get_player_2_move();
-      done = check();
-    } while (done== ' ');
-    if (done=='X') printf("Player 1 won!\n");
-    else printf("Player 2 won!\n");
-    disp_matrix();
+      printf("\nContinue?[Enter N to stop]\n");
+      scanf("%s",&cont);
+    } while (strcmp(cont,"N")!=0&&strcmp(cont,"n")!=0);
   }
   return 0;
 }
