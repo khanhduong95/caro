@@ -105,3 +105,461 @@ int check_result(int m, int n, int a[m][n]){
   return 0;
 }
 
+int check_chance_four(int x,int y,int m,int a[m][m]){
+
+  //check 4
+  
+  if (x<12){
+    if (a[x+1][y]==a[x+2][y]&&a[x+1][y]==a[x+3][y]&&a[x+1][y]==a[x+4][y]&&a[x+1][y]!=a[x+5][y]){
+      if (a[x+1][y]==0){
+	if (a[x-1][y]==a[x+5][y]&&a[x-1][y]!=1) return 1;
+	else if (a[x-1][y]!=a[x+5][y]&&a[x-1][y]!=0) return 1;
+      }
+    }
+    
+    if (y<12){
+      if (a[x][y+1]==a[x][y+2]&&a[x][y+1]==a[x][y+3]&&a[x][y+1]==a[x][y+4]&&a[x][y+1]!=a[x][y+5]){
+	if (a[x][y+1]==0){
+	  if (a[x][y-1]==a[x][y+5]&&a[x][y-1]!=1) return 1;
+	  else if (a[x][y-1]!=a[x][y+5]&&a[x][y-1]!=0) return 1;
+	}
+      }
+      if (a[x+1][y+1]==a[x+2][y+2]&&a[x+1][y+1]==a[x+3][y+3]&&a[x+1][y+1]==a[x+4][y+4]&&a[x+1][y+1]!=a[x+5][y+5]){
+	if (a[x+1][y+1]==0){
+	  if (a[x-1][y-1]==a[x+5][y+5]&&a[x-1][y-1]!=1) return 1;
+	  else if (a[x-1][y-1]!=a[x+5][y+5]&&a[x-1][y-1]!=0) return 1;
+	}
+      }
+      
+    }
+    
+    if (y>4){
+      if (a[x][y-1]==a[x][y-2]&&a[x][y-1]==a[x][y-3]&&a[x][y-1]==a[x][y-4]&&a[x][y-1]!=a[x][y-5]){
+	if (a[x][y-1]==0){
+	  if (a[x][y+1]==a[x][y-5]&&a[x][y+1]!=1) return 1;
+	  else if (a[x][y+1]!=a[x][y-5]&&a[x][y+1]!=0) return 1;
+	}
+      }
+      if (a[x+1][y-1]==a[x+2][y-2]&&a[x+1][y-1]==a[x+3][y-3]&&a[x+1][y-1]==a[x+4][y-4]&&a[x+1][y-1]!=a[x+5][y-5]){
+	if (a[x+1][y-1]==0){
+	  if (a[x-1][y+1]==a[x-5][y+5]&&a[x-1][y+1]!=1) return 1;
+	  else if (a[x-1][y+1]!=a[x-5][y+5]&&a[x-1][y+1]!=0) return 1;
+	}
+      }
+
+      
+    }
+    
+    
+  }
+  
+  if (x>4){
+    if (a[x-1][y]==a[x-2][y]&&a[x-1][y]==a[x-3][y]&&a[x-1][y]==a[x-4][y]&&a[x-1][y]!=a[x-5][y]){
+      if (a[x-1][y]==0){
+	if (a[x+1][y]==a[x-5][y]&&a[x+1][y]!=1) return 1;
+	else if (a[x+1][y]!=a[x-5][y]&&a[x+1][y]!=0) return 1;
+      }
+    }
+    if (y<12){
+      if (a[x][y+1]==a[x][y+2]&&a[x][y+1]==a[x][y+3]&&a[x][y+1]==a[x][y+4]&&a[x][y+1]!=a[x][y+5]){
+	if (a[x][y+1]==0){
+	  if (a[x][y-1]==a[x][y+5]&&a[x][y-1]!=1) return 1;
+	  else if (a[x][y-1]!=a[x][y+5]&&a[x][y-1]!=0) return 1;
+	}
+      }
+      if (a[x-1][y+1]==a[x-2][y+2]&&a[x-1][y+1]==a[x-3][y+3]&&a[x-1][y+1]==a[x-4][y+4]&&a[x-1][y+1]!=a[x-5][y+5]){
+	if (a[x-1][y+1]==0){
+	  if (a[x+1][y-1]==a[x-5][y+5]&&a[x+1][y-1]!=1) return 1;
+	  else if (a[x+1][y-1]!=a[x-5][y+5]&&a[x+1][y-1]!=0) return 1;
+	}
+      }
+      
+    }
+    
+    if (y>4){
+      if (a[x][y-1]==a[x][y-2]&&a[x][y-1]==a[x][y-3]&&a[x][y-1]==a[x][y-4]&&a[x][y-1]!=a[x][y-5]){
+	if (a[x][y-1]==0){
+	  if (a[x][y+1]==a[x][y-5]&&a[x][y+1]!=1) return 1;
+	  else if (a[x][y+1]!=a[x][y-5]&&a[x][y+1]!=0) return 1;
+	}
+      }
+      if (a[x-1][y-1]==a[x-2][y-2]&&a[x-1][y-1]==a[x-3][y-3]&&a[x-1][y-1]==a[x-4][y-4]&&a[x-1][y-1]!=a[x-5][y-5]){
+	if (a[x-1][y-1]==0){
+	  if (a[x+1][y+1]==a[x-5][y-5]&&a[x+1][y+1]!=1) return 1;
+	  else if (a[x+1][y+1]!=a[x-5][y-5]&&a[x+1][y+1]!=0) return 1;
+	}
+      }
+      
+      
+    }
+    
+  }
+
+  //check 1+3
+
+  if (x>1&&x<13){
+    if (a[x-1][y]==a[x+1][y]&&a[x-1][y]==a[x+2][y]&&a[x-1][y]==a[x+3][y]&&a[x-1][y]!=a[x+4][y]){
+      if (a[x-1][y]==0){
+	if (a[x-2][y]==a[x+4][y]&&a[x-2][y]!=1) return 1;
+	else if (a[x-2][y]!=a[x+4][y]&&a[x-2][y]!=0) return 1;
+      }
+    }
+    if (y>1&&y<13){
+      if (a[x][y-1]==a[x][y+1]&&a[x][y-1]==a[x][y+2]&&a[x][y-1]==a[x][y+3]&&a[x][y-1]!=a[x][y+4]){
+	if (a[x][y-1]==0){
+	  if (a[x][y-2]==a[x][y+4]&&a[x][y-2]!=1) return 1;
+	  else if (a[x][y-2]!=a[x][y+4]&&a[x][y-2]!=0) return 1;
+	}
+      }
+
+      if (a[x-1][y-1]==a[x+1][y+1]&&a[x-1][y-1]==a[x+2][y+2]&&a[x-1][y-1]==a[x+3][y+3]&&a[x-1][y-1]!=a[x+4][y+4]){
+	if (a[x-1][y-1]==0){
+	  if (a[x-2][y-2]==a[x+4][y+4]&&a[x-2][y-2]!=1) return 1;
+	  else if (a[x-2][y-2]!=a[x+4][y+4]&&a[x-2][y-2]!=0) return 1;
+	}
+      }
+      
+    }
+    if (y>3&&y<15){
+      if (a[x][y+1]==a[x][y-1]&&a[x][y+1]==a[x][y-2]&&a[x][y+1]==a[x][y-3]&&a[x][y+1]!=a[x][y-4]){
+	if (a[x][y+1]==0){
+	  if (a[x][y+2]==a[x][y-4]&&a[x][y+2]!=1) return 1;
+	  else if (a[x][y+2]!=a[x][y-4]&&a[x][y+2]!=0) return 1;
+	}
+      }
+
+      if (a[x-1][y+1]==a[x+1][y-1]&&a[x-1][y+1]==a[x+2][y-2]&&a[x-1][y+1]==a[x+3][y-3]&&a[x-1][y+1]!=a[x+4][y-4]){
+	if (a[x-1][y+1]==0){
+	  if (a[x-2][y+2]==a[x+4][y-4]&&a[x-2][y+2]!=1) return 1;
+	  else if (a[x-2][y+2]!=a[x+4][y-4]&&a[x-2][y+2]!=0) return 1;
+	}
+      }
+
+      
+    }
+  }
+  
+  if (x>3&&x<15){
+    if (a[x+1][y]==a[x-1][y]&&a[x+1][y]==a[x-2][y]&&a[x+1][y]==a[x-3][y]&&a[x+1][y]!=a[x-4][y]){
+      if (a[x+1][y]==0){
+	if (a[x+2][y]==a[x-4][y]&&a[x+2][y]!=1) return 1;
+	else if (a[x+2][y]!=a[x-4][y]&&a[x+2][y]!=0) return 1;
+      }
+    }
+    if (y>1&&y<13){
+      if (a[x][y-1]==a[x][y+1]&&a[x][y-1]==a[x][y+2]&&a[x][y-1]==a[x][y+3]&&a[x][y-1]!=a[x][y+4]){
+	if (a[x][y-1]==0){
+	  if (a[x][y-2]==a[x][y+4]&&a[x][y-2]!=1) return 1;
+	  else if (a[x][y-2]!=a[x][y+4]&&a[x][y-2]!=0) return 1;
+	}
+      }
+      
+      if (a[x+1][y-1]==a[x-1][y+1]&&a[x+1][y-1]==a[x-2][y+2]&&a[x+1][y-1]==a[x-3][y+3]&&a[x+1][y-1]!=a[x-4][y+4]){
+	if (a[x+1][y-1]==0){
+	  if (a[x+2][y-2]==a[x-4][y+4]&&a[x+2][y-2]!=1) return 1;
+	  else if (a[x+2][y-2]!=a[x-4][y+4]&&a[x+2][y-2]!=0) return 1;
+	  }
+      }
+      
+    }
+    if (y>3&&y<15){
+      if (a[x][y+1]==a[x][y-1]&&a[x][y+1]==a[x][y-2]&&a[x][y+1]==a[x][y-3]&&a[x][y+1]!=a[x][y-4]){
+	if (a[x][y+1]==0){
+	  if (a[x][y+2]==a[x][y-4]&&a[x][y+2]!=1) return 1;
+	  else if (a[x][y+2]!=a[x][y-4]&&a[x][y+2]!=0) return 1;
+	}
+      }
+      
+      if (a[x+1][y+1]==a[x-1][y-1]&&a[x+1][y+1]==a[x-2][y-2]&&a[x+1][y+1]==a[x-3][y-3]&&a[x+1][y+1]!=a[x-4][y-4]){
+	if (a[x+1][y+1]==0){
+	  if (a[x+2][y+2]==a[x-4][y-4]&&a[x+2][y+2]!=1) return 1;
+	  else if (a[x+2][y+2]!=a[x-4][y-4]&&a[x+2][y+2]!=0) return 1;
+	  }
+      }
+      
+      
+    }  
+
+  }
+
+  //check 2+2
+  
+  if (x>2&&x<14){
+    if (a[x-1][y]==a[x-2][y]&&a[x-1][y]==a[x+1][y]&&a[x-1][y]==a[x+2][y]&&a[x-1][y]!=a[x+3][y]){
+      if (a[x-1][y]==0){
+	if (a[x-3][y]==a[x+3][y]&&a[x-3][y]!=1) return 1;	  
+	else if (a[x-3][y]!=a[x+3][y]&&a[x-3][y]!=0) return 1;	
+      }
+    }
+    if (y>2&&y<14){
+      if (a[x][y-1]==a[x][y-2]&&a[x][y-1]==a[x][y+1]&&a[x][y-1]==a[x][y+2]&&a[x][y-1]!=a[x][y+3]){
+	if (a[x][y-1]==0){
+	  if (a[x][y-3]==a[x][y+3]&&a[x][y+3]!=1) return 1;	  
+	  else if (a[x][y-3]!=a[x][y+3]&&a[x][y-3]!=0) return 1;	
+	}
+      }
+      
+      if (a[x-1][y-1]==a[x-2][y-2]&&a[x-1][y-1]==a[x+1][y+1]&&a[x-1][y-1]==a[x+2][y+2]&&a[x-1][y-1]!=a[x+3][y+3]){
+	if (a[x-1][y-1]==0){
+	  if (a[x-3][y-3]==a[x+3][y+3]&&a[x+3][y+3]!=1) return 1;	  
+	  else if (a[x-3][y-3]!=a[x+3][y+3]&&a[x-3][y-3]!=0) return 1;	
+	}
+      }
+      
+      if (a[x+1][y-1]==a[x+2][y-2]&&a[x+1][y-1]==a[x-1][y+1]&&a[x+1][y-1]==a[x-2][y+2]&&a[x+1][y-1]!=a[x-3][y+3]){
+	if (a[x+1][y-1]==0){
+	  if (a[x+3][y-3]==a[x-3][y+3]&&a[x-3][y+3]!=1) return 1;	  
+	  else if (a[x+3][y-3]!=a[x-3][y+3]&&a[x+3][y-3]!=0) return 1;	
+	}
+      }
+      
+      
+    }
+  }
+  
+  
+  if (x<3||x>13){
+    if (y>2&&y<14){
+      if (a[x][y-1]==a[x][y-2]&&a[x][y-1]==a[x][y+1]&&a[x][y-1]==a[x][y+2]&&a[x][y-1]!=a[x][y+3]){
+	if (a[x][y-1]==0){
+	  if (a[x][y-3]==a[x][y+3]&&a[x][y+3]!=1) return 1;	  
+	  else if (a[x][y-3]!=a[x][y+3]&&a[x][y-3]!=0) return 1;	
+	}
+      }
+      
+    }
+  }
+  
+  
+  return 0;
+
+}
+
+
+int check_threat_four(int x,int y,int m,int a[m][m]){
+
+  //check 4
+  
+  if (x<12){
+    if (a[x+1][y]==a[x+2][y]&&a[x+1][y]==a[x+3][y]&&a[x+1][y]==a[x+4][y]&&a[x+1][y]!=a[x+5][y]){
+      if (a[x+1][y]==1){
+	if (a[x-1][y]==a[x+5][y]&&a[x-1][y]!=0) return 1;
+	else if (a[x-1][y]!=a[x+5][y]&&a[x-1][y]!=1) return 1;
+      }
+    }
+    
+    if (y<12){
+      if (a[x][y+1]==a[x][y+2]&&a[x][y+1]==a[x][y+3]&&a[x][y+1]==a[x][y+4]&&a[x][y+1]!=a[x][y+5]){
+	if (a[x][y+1]==1){
+	  if (a[x][y-1]==a[x][y+5]&&a[x][y-1]!=0) return 1;
+	  else if (a[x][y-1]!=a[x][y+5]&&a[x][y-1]!=1) return 1;
+	}
+      }
+      if (a[x+1][y+1]==a[x+2][y+2]&&a[x+1][y+1]==a[x+3][y+3]&&a[x+1][y+1]==a[x+4][y+4]&&a[x+1][y+1]!=a[x+5][y+5]){
+	if (a[x+1][y+1]==1){
+	  if (a[x-1][y-1]==a[x+5][y+5]&&a[x-1][y-1]!=0) return 1;
+	  else if (a[x-1][y-1]!=a[x+5][y+5]&&a[x-1][y-1]!=1) return 1;
+	}
+      }
+      
+    }
+    
+    if (y>4){
+      if (a[x][y-1]==a[x][y-2]&&a[x][y-1]==a[x][y-3]&&a[x][y-1]==a[x][y-4]&&a[x][y-1]!=a[x][y-5]){
+	if (a[x][y-1]==1){
+	  if (a[x][y+1]==a[x][y-5]&&a[x][y+1]!=0) return 1;
+	  else if (a[x][y+1]!=a[x][y-5]&&a[x][y+1]!=1) return 1;
+	}
+      }
+      if (a[x+1][y-1]==a[x+2][y-2]&&a[x+1][y-1]==a[x+3][y-3]&&a[x+1][y-1]==a[x+4][y-4]&&a[x+1][y-1]!=a[x+5][y-5]){
+	if (a[x+1][y-1]==1){
+	  if (a[x-1][y+1]==a[x-5][y+5]&&a[x-1][y+1]!=0) return 1;
+	  else if (a[x-1][y+1]!=a[x-5][y+5]&&a[x-1][y+1]!=1) return 1;
+	}
+      }
+
+      
+    }
+    
+    
+  }
+  
+  if (x>4){
+    if (a[x-1][y]==a[x-2][y]&&a[x-1][y]==a[x-3][y]&&a[x-1][y]==a[x-4][y]&&a[x-1][y]!=a[x-5][y]){
+      if (a[x-1][y]==1){
+	if (a[x+1][y]==a[x-5][y]&&a[x+1][y]!=0) return 1;
+	else if (a[x+1][y]!=a[x-5][y]&&a[x+1][y]!=1) return 1;
+      }
+    }
+    if (y<12){
+      if (a[x][y+1]==a[x][y+2]&&a[x][y+1]==a[x][y+3]&&a[x][y+1]==a[x][y+4]&&a[x][y+1]!=a[x][y+5]){
+	if (a[x][y+1]==1){
+	  if (a[x][y-1]==a[x][y+5]&&a[x][y-1]!=0) return 1;
+	  else if (a[x][y-1]!=a[x][y+5]&&a[x][y-1]!=1) return 1;
+	}
+      }
+      if (a[x-1][y+1]==a[x-2][y+2]&&a[x-1][y+1]==a[x-3][y+3]&&a[x-1][y+1]==a[x-4][y+4]&&a[x-1][y+1]!=a[x-5][y+5]){
+	if (a[x-1][y+1]==1){
+	  if (a[x+1][y-1]==a[x-5][y+5]&&a[x+1][y-1]!=0) return 1;
+	  else if (a[x+1][y-1]!=a[x-5][y+5]&&a[x+1][y-1]!=1) return 1;
+	}
+      }
+      
+    }
+    
+    if (y>4){
+      if (a[x][y-1]==a[x][y-2]&&a[x][y-1]==a[x][y-3]&&a[x][y-1]==a[x][y-4]&&a[x][y-1]!=a[x][y-5]){
+	if (a[x][y-1]==1){
+	  if (a[x][y+1]==a[x][y-5]&&a[x][y+1]!=0) return 1;
+	  else if (a[x][y+1]!=a[x][y-5]&&a[x][y+1]!=1) return 1;
+	}
+      }
+      if (a[x-1][y-1]==a[x-2][y-2]&&a[x-1][y-1]==a[x-3][y-3]&&a[x-1][y-1]==a[x-4][y-4]&&a[x-1][y-1]!=a[x-5][y-5]){
+	if (a[x-1][y-1]==1){
+	  if (a[x+1][y+1]==a[x-5][y-5]&&a[x+1][y+1]!=0) return 1;
+	  else if (a[x+1][y+1]!=a[x-5][y-5]&&a[x+1][y+1]!=1) return 1;
+	}
+      }
+      
+      
+    }
+    
+  }
+
+  //check 1+3
+
+  if (x>1&&x<13){
+    if (a[x-1][y]==a[x+1][y]&&a[x-1][y]==a[x+2][y]&&a[x-1][y]==a[x+3][y]&&a[x-1][y]!=a[x+4][y]){
+      if (a[x-1][y]==1){
+	if (a[x-2][y]==a[x+4][y]&&a[x-2][y]!=0) return 1;
+	else if (a[x-2][y]!=a[x+4][y]&&a[x-2][y]!=1) return 1;
+      }
+    }
+    if (y>1&&y<13){
+      if (a[x][y-1]==a[x][y+1]&&a[x][y-1]==a[x][y+2]&&a[x][y-1]==a[x][y+3]&&a[x][y-1]!=a[x][y+4]){
+	if (a[x][y-1]==1){
+	  if (a[x][y-2]==a[x][y+4]&&a[x][y-2]!=0) return 1;
+	  else if (a[x][y-2]!=a[x][y+4]&&a[x][y-2]!=1) return 1;
+	}
+      }
+
+      if (a[x-1][y-1]==a[x+1][y+1]&&a[x-1][y-1]==a[x+2][y+2]&&a[x-1][y-1]==a[x+3][y+3]&&a[x-1][y-1]!=a[x+4][y+4]){
+	if (a[x-1][y-1]==1){
+	  if (a[x-2][y-2]==a[x+4][y+4]&&a[x-2][y-2]!=0) return 1;
+	  else if (a[x-2][y-2]!=a[x+4][y+4]&&a[x-2][y-2]!=1) return 1;
+	}
+      }
+      
+    }
+    if (y>3&&y<15){
+      if (a[x][y+1]==a[x][y-1]&&a[x][y+1]==a[x][y-2]&&a[x][y+1]==a[x][y-3]&&a[x][y+1]!=a[x][y-4]){
+	if (a[x][y+1]==1){
+	  if (a[x][y+2]==a[x][y-4]&&a[x][y+2]!=0) return 1;
+	  else if (a[x][y+2]!=a[x][y-4]&&a[x][y+2]!=1) return 1;
+	}
+      }
+
+      if (a[x-1][y+1]==a[x+1][y-1]&&a[x-1][y+1]==a[x+2][y-2]&&a[x-1][y+1]==a[x+3][y-3]&&a[x-1][y+1]!=a[x+4][y-4]){
+	if (a[x-1][y+1]==1){
+	  if (a[x-2][y+2]==a[x+4][y-4]&&a[x-2][y+2]!=0) return 1;
+	  else if (a[x-2][y+2]!=a[x+4][y-4]&&a[x-2][y+2]!=1) return 1;
+	}
+      }
+
+      
+    }
+  }
+  
+  if (x>3&&x<15){
+    if (a[x+1][y]==a[x-1][y]&&a[x+1][y]==a[x-2][y]&&a[x+1][y]==a[x-3][y]&&a[x+1][y]!=a[x-4][y]){
+      if (a[x+1][y]==1){
+	if (a[x+2][y]==a[x-4][y]&&a[x+2][y]!=0) return 1;
+	else if (a[x+2][y]!=a[x-4][y]&&a[x+2][y]!=1) return 1;
+      }
+    }
+    if (y>1&&y<13){
+      if (a[x][y-1]==a[x][y+1]&&a[x][y-1]==a[x][y+2]&&a[x][y-1]==a[x][y+3]&&a[x][y-1]!=a[x][y+4]){
+	if (a[x][y-1]==1){
+	  if (a[x][y-2]==a[x][y+4]&&a[x][y-2]!=0) return 1;
+	  else if (a[x][y-2]!=a[x][y+4]&&a[x][y-2]!=1) return 1;
+	}
+      }
+      
+      if (a[x+1][y-1]==a[x-1][y+1]&&a[x+1][y-1]==a[x-2][y+2]&&a[x+1][y-1]==a[x-3][y+3]&&a[x+1][y-1]!=a[x-4][y+4]){
+	if (a[x+1][y-1]==1){
+	  if (a[x+2][y-2]==a[x-4][y+4]&&a[x+2][y-2]!=0) return 1;
+	  else if (a[x+2][y-2]!=a[x-4][y+4]&&a[x+2][y-2]!=1) return 1;
+	  }
+      }
+      
+    }
+    if (y>3&&y<15){
+      if (a[x][y+1]==a[x][y-1]&&a[x][y+1]==a[x][y-2]&&a[x][y+1]==a[x][y-3]&&a[x][y+1]!=a[x][y-4]){
+	if (a[x][y+1]==1){
+	  if (a[x][y+2]==a[x][y-4]&&a[x][y+2]!=0) return 1;
+	  else if (a[x][y+2]!=a[x][y-4]&&a[x][y+2]!=1) return 1;
+	}
+      }
+      
+      if (a[x+1][y+1]==a[x-1][y-1]&&a[x+1][y+1]==a[x-2][y-2]&&a[x+1][y+1]==a[x-3][y-3]&&a[x+1][y+1]!=a[x-4][y-4]){
+	if (a[x+1][y+1]==1){
+	  if (a[x+2][y+2]==a[x-4][y-4]&&a[x+2][y+2]!=0) return 1;
+	  else if (a[x+2][y+2]!=a[x-4][y-4]&&a[x+2][y+2]!=1) return 1;
+	  }
+      }
+      
+      
+    }  
+
+  }
+
+  //check 2+2
+
+  if (x>2&&x<14){
+    if (a[x-1][y]==a[x-2][y]&&a[x-1][y]==a[x+1][y]&&a[x-1][y]==a[x+2][y]&&a[x-1][y]!=a[x+3][y]){
+      if (a[x-1][y]==1){
+	if (a[x-3][y]==a[x+3][y]&&a[x-3][y]!=0) return 1;	  
+	else if (a[x-3][y]!=a[x+3][y]&&a[x-3][y]!=1) return 1;	
+      }
+    }
+    if (y>2&&y<14){
+      if (a[x][y-1]==a[x][y-2]&&a[x][y-1]==a[x][y+1]&&a[x][y-1]==a[x][y+2]&&a[x][y-1]!=a[x][y+3]){
+	if (a[x][y-1]==1){
+	  if (a[x][y-3]==a[x][y+3]&&a[x][y+3]!=0) return 1;	  
+	  else if (a[x][y-3]!=a[x][y+3]&&a[x][y-3]!=1) return 1;	
+	}
+      }
+
+      if (a[x-1][y-1]==a[x-2][y-2]&&a[x-1][y-1]==a[x+1][y+1]&&a[x-1][y-1]==a[x+2][y+2]&&a[x-1][y-1]!=a[x+3][y+3]){
+	if (a[x-1][y-1]==1){
+	  if (a[x-3][y-3]==a[x+3][y+3]&&a[x+3][y+3]!=0) return 1;	  
+	  else if (a[x-3][y-3]!=a[x+3][y+3]&&a[x-3][y-3]!=1) return 1;	
+	}
+      }
+
+      if (a[x+1][y-1]==a[x+2][y-2]&&a[x+1][y-1]==a[x-1][y+1]&&a[x+1][y-1]==a[x-2][y+2]&&a[x+1][y-1]!=a[x-3][y+3]){
+	if (a[x+1][y-1]==1){
+	  if (a[x+3][y-3]==a[x-3][y+3]&&a[x-3][y+3]!=0) return 1;	  
+	  else if (a[x+3][y-3]!=a[x-3][y+3]&&a[x+3][y-3]!=1) return 1;	
+	}
+      }
+      
+      
+    }
+  }
+
+  if (x<3||x>13){
+    if (y>2&&y<14){
+      if (a[x][y-1]==a[x][y-2]&&a[x][y-1]==a[x][y+1]&&a[x][y-1]==a[x][y+2]&&a[x][y-1]!=a[x][y+3]){
+	if (a[x][y-1]==1){
+	  if (a[x][y-3]==a[x][y+3]&&a[x][y+3]!=0) return 1;	  
+	  else if (a[x][y-3]!=a[x][y+3]&&a[x][y-3]!=1) return 1;	
+	}
+      }
+      
+    }
+  }
+  return 0;
+
+}
+

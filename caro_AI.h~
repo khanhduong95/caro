@@ -1,0 +1,40 @@
+#include "caro_check.h"
+
+int user_count,computer_count;
+int choose_x=7;
+int choose_y=7;
+int user_x=7;
+int user_y=7;
+int computer_x=7;
+int computer_y=7;
+
+void attack_search_around(int x,int y){
+  
+}
+
+void defend_search_around(int x,int y){
+  
+}
+
+void attack(int m,int a[m][m]){
+  if (user_count==0) return;
+  else {
+    
+  }
+}
+
+void defend(int m,int a[m][m]){
+
+}
+
+void caro_brain(int m,int a[m][m]){
+  int i,j;
+  for (i=1;i<m-1;i++){
+    for (j=1;j<m-1;j++){
+      if (a[i][j]==1) ++user_count;
+      else if (a[i][j]==0) ++computer_count;
+    }
+  }
+  if (user_count==computer_count) attack();
+  else 
+}

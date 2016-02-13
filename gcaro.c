@@ -1,4 +1,4 @@
-#include "caro_check.h"
+#include "caro_AI.h"
 
 
 //Declare items
@@ -63,13 +63,42 @@ void computer_mark()
 	int i,j;
 	while(1)
 	{
-		i=random()%15;
-		j=random()%15;
-		if(gtk_button_get_label(GTK_BUTTON(buttons[i][j]))==NULL)
+	  int a[17][17];
+	  for (i=0;i<17;i++){
+	    a[i][0]=-1;
+	    a[i][16]=-1;
+	  }
+	  
+	  for (j=0;j<17;j++){
+	    a[0][j]=-1;
+	    a[16][j]=-1;
+	  }
+	  
+	  for(i=0;i<15;i++){
+	    for(j=0;j<15;j++){
+	      const char *text=gtk_button_get_label(GTK_BUTTON(buttons[i][j]));
+	      if (text==NULL)
+		a[i+1][j+1]=2;
+	      else if (strcmp(text,"X")==0)
 		{
-			gtk_button_set_label(GTK_BUTTON(buttons[i][j]),"O");
-			break;
+		  a[i+1][j+1]=1;
 		}
+	      else if (strcmp(text,"O")==0)
+		{
+		  a[i+1][j+1]=0;
+		}
+	    }
+	  }
+	  caro_brain(17,a);
+	  i=choose_x;
+	  j=choose_y;
+	  //i=random()%15;
+	  //j=random()%15;
+	  if(gtk_button_get_label(GTK_BUTTON(buttons[i][j]))==NULL)
+	    {
+	      gtk_button_set_label(GTK_BUTTON(buttons[i][j]),"O");
+	      break;
+	    }
 	}	
 }
 	
@@ -96,18 +125,26 @@ void reset()
 	int i,j;
 	state=0;
 	for(i=0;i<15;i++)
-		for(j=0;j<15;j++)
-		{
-			gtk_button_set_label(GTK_BUTTON(buttons[i][j]),"");
-			gtk_button_set_label(GTK_BUTTON(buttons[i][j]),NULL);
-			//gtk_widget_show(buttons[i][j]);
-		}
+	  for(j=0;j<15;j++){
+	    gtk_button_set_label(GTK_BUTTON(buttons[i][j]),"");
+	    gtk_button_set_label(GTK_BUTTON(buttons[i][j]),NULL);
+	    //gtk_widget_show(buttons[i][j]);
+	  }
+	user_count=0;
+	computer_count=0;
+	choose_x=7;
+	choose_y=7;
+	user_x=7;
+	user_y=7;
+	computer_x=7;
+	computer_y=7;
 	if(turn)
-	{
-		computer_mark();
-		gtk_label_set_text(GTK_LABEL(result),"Game in progress");
-		turn=0;
-	}
+	  {
+	    
+	    computer_mark();
+	    gtk_label_set_text(GTK_LABEL(result),"Game in progress");
+	    turn=0;
+	  }
 	else
 	{
 		turn=1;
