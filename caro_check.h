@@ -282,6 +282,54 @@ int check_chance_four(int x,int y,int m,int a[m][m]){
 
   }
 
+  if (x<2||x>12){
+    if (y>1&&y<13){
+      if (a[x][y-1]==a[x][y+1]&&a[x][y-1]==a[x][y+2]&&a[x][y-1]==a[x][y+3]&&a[x][y-1]!=a[x][y+4]){
+	if (a[x][y-1]==0){
+	  if (a[x][y-2]==a[x][y+4]&&a[x][y-2]!=1) return 1;
+	  else if (a[x][y-2]!=a[x][y+4]&&a[x][y-2]!=0) return 1;
+	}
+      }
+      
+    }
+    if (y>3&&y<15){
+      if (a[x][y+1]==a[x][y-1]&&a[x][y+1]==a[x][y-2]&&a[x][y+1]==a[x][y-3]&&a[x][y+1]!=a[x][y-4]){
+	if (a[x][y+1]==0){
+	  if (a[x][y+2]==a[x][y-4]&&a[x][y+2]!=1) return 1;
+	  else if (a[x][y+2]!=a[x][y-4]&&a[x][y+2]!=0) return 1;
+	}
+      }
+      
+      
+    }
+  }
+
+  if (x<4||x>14){
+    if (y>1&&y<13){
+      if (a[x][y-1]==a[x][y+1]&&a[x][y-1]==a[x][y+2]&&a[x][y-1]==a[x][y+3]&&a[x][y-1]!=a[x][y+4]){
+	if (a[x][y-1]==0){
+	  if (a[x][y-2]==a[x][y+4]&&a[x][y-2]!=1) return 1;
+	  else if (a[x][y-2]!=a[x][y+4]&&a[x][y-2]!=0) return 1;
+	}
+      }
+      
+    }
+    if (y>3&&y<15){
+      if (a[x][y+1]==a[x][y-1]&&a[x][y+1]==a[x][y-2]&&a[x][y+1]==a[x][y-3]&&a[x][y+1]!=a[x][y-4]){
+	if (a[x][y+1]==0){
+	  if (a[x][y+2]==a[x][y-4]&&a[x][y+2]!=1) return 1;
+	  else if (a[x][y+2]!=a[x][y-4]&&a[x][y+2]!=0) return 1;
+	}
+      }
+    }
+    
+    
+  }  
+  
+  
+
+
+
   //check 2+2
   
   if (x>2&&x<14){
@@ -513,6 +561,53 @@ int check_threat_four(int x,int y,int m,int a[m][m]){
 
   }
 
+  if (x<2||x>12){
+    if (y>1&&y<13){
+      if (a[x][y-1]==a[x][y+1]&&a[x][y-1]==a[x][y+2]&&a[x][y-1]==a[x][y+3]&&a[x][y-1]!=a[x][y+4]){
+	if (a[x][y-1]==1){
+	  if (a[x][y-2]==a[x][y+4]&&a[x][y-2]!=0) return 1;
+	  else if (a[x][y-2]!=a[x][y+4]&&a[x][y-2]!=1) return 1;
+	}
+      }
+      
+      
+    }
+    if (y>3&&y<15){
+      if (a[x][y+1]==a[x][y-1]&&a[x][y+1]==a[x][y-2]&&a[x][y+1]==a[x][y-3]&&a[x][y+1]!=a[x][y-4]){
+	if (a[x][y+1]==1){
+	  if (a[x][y+2]==a[x][y-4]&&a[x][y+2]!=0) return 1;
+	  else if (a[x][y+2]!=a[x][y-4]&&a[x][y+2]!=1) return 1;
+	}
+      }
+      
+    }
+  }
+
+  if (x<4||x>14){
+    if (y>1&&y<13){
+      if (a[x][y-1]==a[x][y+1]&&a[x][y-1]==a[x][y+2]&&a[x][y-1]==a[x][y+3]&&a[x][y-1]!=a[x][y+4]){
+	if (a[x][y-1]==1){
+	  if (a[x][y-2]==a[x][y+4]&&a[x][y-2]!=0) return 1;
+	  else if (a[x][y-2]!=a[x][y+4]&&a[x][y-2]!=1) return 1;
+	}
+      }
+      
+      
+    }
+    if (y>3&&y<15){
+      if (a[x][y+1]==a[x][y-1]&&a[x][y+1]==a[x][y-2]&&a[x][y+1]==a[x][y-3]&&a[x][y+1]!=a[x][y-4]){
+	if (a[x][y+1]==1){
+	  if (a[x][y+2]==a[x][y-4]&&a[x][y+2]!=0) return 1;
+	  else if (a[x][y+2]!=a[x][y-4]&&a[x][y+2]!=1) return 1;
+	}
+      }
+      
+      
+    }  
+
+  }
+
+  
   //check 2+2
 
   if (x>2&&x<14){
@@ -563,3 +658,77 @@ int check_threat_four(int x,int y,int m,int a[m][m]){
 
 }
 
+
+int check_chance_three(int x,int y,int m,int a[m][m]){
+
+  //check 3
+  if (x<13){
+    if (a[x+1][y]==a[x+2][y]&&a[x+1][y]==a[x+3][y]&&a[x+4][y]==2&&a[x-1][y]==2&&a[x+1][y]==0) return 1;
+    if (y<13){
+      if (a[x][y+1]==a[x][y+2]&&a[x][y+1]==a[x][y+3]&&a[x][y+4]==2&&a[x][y-1]==2&&a[x][y+1]==0) return 1;
+      else if (a[x+1][y+1]==a[x+2][y+2]&&a[x+1][y+1]==a[x+3][y+3]&&a[x+4][y+4]==2&&a[x-1][y-1]==2&&a[x+1][y+1]==0) return 1;
+    }
+    if (y>4){
+      if (a[x][y-1]==a[x][y-2]&&a[x][y-1]==a[x][y-3]&&a[x][y-4]==2&&a[x][y+1]==2&&a[x][y-1]==0) return 1;
+      else if (a[x+1][y-1]==a[x+2][y-2]&&a[x+1][y-1]==a[x+3][y-3]&&a[x+4][y-4]==2&&a[x-1][y+1]==2&&a[x+1][y-1]==0) return 1;
+    }
+    
+  }
+
+  if (x>4){
+    if (a[x-1][y]==a[x-2][y]&&a[x-1][y]==a[x-3][y]&&a[x-4][y]==2&&a[x+1][y]==2&&a[x-1][y]==0) return 1;
+    if (y<13){
+      if (a[x][y+1]==a[x][y+2]&&a[x][y+1]==a[x][y+3]&&a[x][y+4]==2&&a[x][y-1]==2&&a[x][y+1]==0) return 1;
+      else if (a[x-1][y+1]==a[x-2][y+2]&&a[x-1][y+1]==a[x-3][y+3]&&a[x-4][y+4]==2&&a[x+1][y-1]==2&&a[x-1][y+1]==0) return 1;
+    }
+    if (y>4){
+      if (a[x][y-1]==a[x][y-2]&&a[x][y-1]==a[x][y-3]&&a[x][y-4]==2&&a[x][y+1]==2&&a[x][y-1]==0) return 1;
+      else if (a[x-1][y-1]==a[x-2][y-2]&&a[x-1][y-1]==a[x-3][y-3]&&a[x-4][y-4]==2&&a[x+1][y+1]==2&&a[x+1][y+1]==0) return 1;
+    }
+    
+  }
+  
+  //check 1+2
+
+  if (x>1&&x<14){
+    
+  }
+  
+  return 0;
+}
+
+
+int check_threat_three(int x,int y,int m,int a[m][m]){
+
+  //check 3
+  if (x<13){
+    if (a[x+1][y]==a[x+2][y]&&a[x+1][y]==a[x+3][y]&&a[x+4][y]==2&&a[x-1][y]==2&&a[x+1][y]==1) return 1;
+    if (y<13){
+      if (a[x][y+1]==a[x][y+2]&&a[x][y+1]==a[x][y+3]&&a[x][y+4]==2&&a[x][y-1]==2&&a[x][y+1]==1) return 1;
+      else if (a[x+1][y+1]==a[x+2][y+2]&&a[x+1][y+1]==a[x+3][y+3]&&a[x+4][y+4]==2&&a[x-1][y-1]==2&&a[x+1][y+1]==1) return 1;
+    }
+    if (y>4){
+      if (a[x][y-1]==a[x][y-2]&&a[x][y-1]==a[x][y-3]&&a[x][y-4]==2&&a[x][y+1]==2&&a[x][y-1]==1) return 1;
+      else if (a[x+1][y-1]==a[x+2][y-2]&&a[x+1][y-1]==a[x+3][y-3]&&a[x+4][y-4]==2&&a[x-1][y+1]==2&&a[x+1][y-1]==1) return 1;
+    }
+    
+  }
+
+  if (x>4){
+    if (a[x-1][y]==a[x-2][y]&&a[x-1][y]==a[x-3][y]&&a[x-4][y]==2&&a[x+1][y]==2&&a[x-1][y]==1) return 1;
+    if (y<13){
+      if (a[x][y+1]==a[x][y+2]&&a[x][y+1]==a[x][y+3]&&a[x][y+4]==2&&a[x][y-1]==2&&a[x][y+1]==1) return 1;
+      else if (a[x-1][y+1]==a[x-2][y+2]&&a[x-1][y+1]==a[x-3][y+3]&&a[x-4][y+4]==2&&a[x+1][y-1]==2&&a[x-1][y+1]==1) return 1;
+    }
+    if (y>4){
+      if (a[x][y-1]==a[x][y-2]&&a[x][y-1]==a[x][y-3]&&a[x][y-4]==2&&a[x][y+1]==2&&a[x][y-1]==1) return 1;
+      else if (a[x-1][y-1]==a[x-2][y-2]&&a[x-1][y-1]==a[x-3][y-3]&&a[x-4][y-4]==2&&a[x+1][y+1]==2&&a[x+1][y+1]==1) return 1;
+    }
+    
+  }
+  
+  //check 1+2
+  
+  
+  return 0;
+}

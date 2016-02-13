@@ -42,6 +42,31 @@ void caro_brain(int m,int a[m][m]){
       }
     }
 
+    for (i=1;i<m-1;i++){
+      for (j=1;j<m-1;j++){
+	if (a[i][j]==2){
+	  if (check_chance_three(i,j,17,a)==1){
+	    choose_x=i-1;
+	    choose_y=j-1;
+	    return;
+	  }
+	}
+      }
+    }
+    
+    for (i=1;i<m-1;i++){
+      for (j=1;j<m-1;j++){
+	if (a[i][j]==2){
+	  if (check_threat_three(i,j,17,a)==1){
+	    choose_x=i-1;
+	    choose_y=j-1;
+	    return;
+	  }
+	}
+      }
+    }
+
+
     choose_x=random()%15;
     choose_y=random()%15;
     
