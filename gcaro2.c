@@ -10,7 +10,7 @@ GtkWidget *buttons[15][15];
 GtkWidget *vbox,*grid;
 
 //statistics
-int computer=0,user=0,turn=1,state=0;
+int user1=0,user2=0,turn=1,state=0,temp_turn=1;
 //initialize items
 
 void gtk_init_items()
@@ -31,7 +31,7 @@ void gtk_init_items()
 	reset_button=gtk_button_new_with_label("Reset");
 	result=gtk_label_new("It's your turn to begin.");
 	char text[30];
-	sprintf(text,"Computer %d - %d User",computer,user);
+	sprintf(text,"Player 1 %d - %d Player 2",user1,user2);
 	stat=gtk_label_new(text);
 }
 
@@ -58,19 +58,11 @@ void quit()
 {
 	gtk_main_quit();
 }
-void computer_mark()
-{
-	int i,j;
-	while(1)
-	{
-		i=random()%15;
-		j=random()%15;
-		if(gtk_button_get_label(GTK_BUTTON(buttons[i][j]))==NULL)
-		{
-			gtk_button_set_label(GTK_BUTTON(buttons[i][j]),"O");
-			break;
-		}
-	}	
+
+void change_player_turn(){
+  if (temp_turn==1) temp_turn=0;
+  else temp_turn=1;
+  
 }
 	
 //check whether board finished.
@@ -104,14 +96,16 @@ void reset()
 		}
 	if(turn)
 	{
-		computer_mark();
-		gtk_label_set_text(GTK_LABEL(result),"Game in progress");
-		turn=0;
+	  turn=0;
+	  temp_turn=turn;
+	  gtk_label_set_text(GTK_LABEL(result),"Player 2's turn to begin");
+
 	}
 	else
 	{
-		turn=1;
-		gtk_label_set_text(GTK_LABEL(result),"It is your turn to begin");
+	  turn=1;
+	  temp_turn=turn;
+	  gtk_label_set_text(GTK_LABEL(result),"Player 1's turn to begin");
 	}
 }
 
@@ -126,9 +120,9 @@ void show_message(int type)
        	{
        		case 0:sprintf(text,"Game was tie");
        			break;
-       		case 1:sprintf(text,"You won the game");
+       		case 1:sprintf(text,"Player 1 won the game");
        			break;
-       		case 2:sprintf(text,"Computer won the game");
+       		case 2:sprintf(text,"Player 2 won the game");
        	}
        	gtk_label_set_text(GTK_LABEL(result),text);
 }
@@ -165,19 +159,19 @@ bool check()
 
   if (check_result(17,17,a)==1){
     show_message(1);
-    user++;
+    user1++;
     state=1;
     char text[30];
-    sprintf(text,"Computer %d - %d User",computer,user);
+    sprintf(text,"Player 1 %d - %d Player 2",user1,user2);
     gtk_label_set_text(GTK_LABEL(stat),text);
     return 0;
   }
   if (check_result(17,17,a)==2){
     show_message(2);
-    computer++;
+    user2++;
     state=1;
     char text[30];
-    sprintf(text,"Computer %d - %d User",computer,user);
+    sprintf(text,"Player 1 %d - %d Player 2",user1,user2);
     gtk_label_set_text(GTK_LABEL(stat),text);
     return 0;
   }
@@ -200,8 +194,15 @@ int mark(GtkWidget *button)
 		return 0;
 	if(gtk_button_get_label(GTK_BUTTON(button))==NULL)
 	{
-		gtk_button_set_label(GTK_BUTTON(button),"X");
-		gtk_label_set_text(GTK_LABEL(result),"Game in progress");
+	  if(temp_turn==1){
+	    gtk_button_set_label(GTK_BUTTON(button),"X");
+	    gtk_label_set_text(GTK_LABEL(result),"Game in progress");
+	  }
+	  else {
+	    gtk_button_set_label(GTK_BUTTON(button),"O");
+	    gtk_label_set_text(GTK_LABEL(result),"Game in progress");
+	    
+	  }
 	}
 	else
 	{
@@ -209,7 +210,7 @@ int mark(GtkWidget *button)
 	}
 	if(check())
 	{
-		computer_mark();
+		change_player_turn();
 		check();
 	}
 	return 0;
@@ -226,7 +227,8 @@ void gtk_init_signals()
 		for(j=0;j<15;j++)
 			g_signal_connect(buttons[i][j],"clicked",G_CALLBACK(mark),buttons[i][j]);
 	g_signal_connect(reset_button,"clicked",G_CALLBACK(reset),NULL);
-} 
+}
+
 
 int main(int argc,char *argv[])
 {
@@ -234,6 +236,7 @@ int main(int argc,char *argv[])
 	gtk_init_items();
 	gtk_packing();
 	gtk_init_signals();
+	
 	gtk_widget_show_all(window);
 	gtk_main();
 
