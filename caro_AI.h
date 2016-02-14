@@ -14,14 +14,17 @@ void caro_brain(int m,int a[m][m]){
   }
   if (user_count==0) return;
   else if (user_count==1){
-    int random_number_x=random()%5;
-    int random_number_y=random()%5;
 
     for (i=1;i<16;i++){
       for (j=1;j<16;j++){
 	if (a[i][j]==1){
-	  choose_x=i-3+random_number_x;
-	  choose_y=j-3+random_number_y;
+	  do{
+	    int random_number_x=random()%5;
+	    int random_number_y=random()%5;
+	    
+	    choose_x=i-3+random_number_x;
+	    choose_y=j-3+random_number_y;
+	  } while (choose_x<1||choose_x>15||choose_y<1||choose_y>15);
 	  return;
 	}
       }
@@ -89,7 +92,31 @@ void caro_brain(int m,int a[m][m]){
 	}
       }
     }
+
+    for (i=3;i<m-3;i++){
+      for (j=2;j<m-3;j++){
+	if (a[i][j]==2){
+	  if (check_chance_double_two(i,j,17,a)==1){
+	    choose_x=i-1;
+	    choose_y=j-1;
+	    return;
+	  }
+	}
+      }
+    }
     
+    for (i=3;i<m-3;i++){
+      for (j=3;j<m-1;j++){
+	if (a[i][j]==2){
+	  if (check_threat_double_two(i,j,17,a)==1){
+	    choose_x=i-1;
+	    choose_y=j-1;
+	    return;
+	  }
+	}
+      }
+    }
+
 
     choose_x=random()%15;
     choose_y=random()%15;
