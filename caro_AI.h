@@ -1,11 +1,13 @@
 #include "caro_check.h"
 
-int user_count;
 int choose_x=7;
 int choose_y=7;
 
 void caro_brain(int m,int a[m][m]){
   int i,j;
+  time_t t;
+  srand((unsigned) time(&t));
+  int user_count;
   for (i=1;i<m-1;i++){
     for (j=1;j<m-1;j++){
       if (a[i][j]==1) ++user_count;
@@ -14,13 +16,27 @@ void caro_brain(int m,int a[m][m]){
   }
   if (user_count==0) return;
   else if (user_count==1){
+    for (i=1;i<16;i++){
+      for (j=1;j<16;j++){
+	if (a[i][j]==0){
+	  do{
+	    int random_number_x=rand()%5;
+	    int random_number_y=rand()%5;
+	    
+	    choose_x=i-3+random_number_x;
+	    choose_y=j-3+random_number_y;
+	  } while (choose_x<1||choose_x>15||choose_y<1||choose_y>15);
+	  return;
+	}
+      }
+    }
 
     for (i=1;i<16;i++){
       for (j=1;j<16;j++){
 	if (a[i][j]==1){
 	  do{
-	    int random_number_x=random()%5;
-	    int random_number_y=random()%5;
+	    int random_number_x=rand()%5;
+	    int random_number_y=rand()%5;
 	    
 	    choose_x=i-3+random_number_x;
 	    choose_y=j-3+random_number_y;
@@ -68,6 +84,51 @@ void caro_brain(int m,int a[m][m]){
 	}
       }
     }
+
+    //check chance double three
+
+    for (i=1;i<m-1;i++){
+      for (j=1;j<m-1;j++){
+	if (a[i][j]==2){
+	  if (
+	    (check_chance_three_vertical(i,j,17,a)==1&&check_chance_three_horizontal(i,j,17,a)==1)||
+	    (check_chance_three_vertical(i,j,17,a)==1&&check_chance_three_diagonal1(i,j,17,a)==1)||
+	    (check_chance_three_vertical(i,j,17,a)==1&&check_chance_three_diagonal2(i,j,17,a)==1)||
+	    (check_chance_three_horizontal(i,j,17,a)==1&&check_chance_three_diagonal1(i,j,17,a)==1)||
+	    (check_chance_three_horizontal(i,j,17,a)==1&&check_chance_three_diagonal2(i,j,17,a)==1)||
+	    (check_chance_three_diagonal1(i,j,17,a)==1&&check_chance_three_diagonal2(i,j,17,a)==1)	    
+	  ){
+	    choose_x=i-1;
+	    choose_y=j-1;
+	    return;
+	  }
+	}
+      }
+    }
+
+    //check threat double three
+
+    for (i=1;i<m-1;i++){
+      for (j=1;j<m-1;j++){
+	if (a[i][j]==2){
+	  if (
+	    (check_threat_three_vertical(i,j,17,a)==1&&check_threat_three_horizontal(i,j,17,a)==1)||
+	    (check_threat_three_vertical(i,j,17,a)==1&&check_threat_three_diagonal1(i,j,17,a)==1)||
+	    (check_threat_three_vertical(i,j,17,a)==1&&check_threat_three_diagonal2(i,j,17,a)==1)||
+	    (check_threat_three_horizontal(i,j,17,a)==1&&check_threat_three_diagonal1(i,j,17,a)==1)||
+	    (check_threat_three_horizontal(i,j,17,a)==1&&check_threat_three_diagonal2(i,j,17,a)==1)||
+	    (check_threat_three_diagonal1(i,j,17,a)==1&&check_threat_three_diagonal2(i,j,17,a)==1)	    
+	  ){
+	    choose_x=i-1;
+	    choose_y=j-1;
+	    return;
+	  }
+	}
+      }
+    }
+
+    
+    //check chance three
     
     for (i=1;i<m-1;i++){
       for (j=1;j<m-1;j++){
@@ -80,6 +141,8 @@ void caro_brain(int m,int a[m][m]){
 	}
       }
     }
+
+    //check threat three
     
     for (i=1;i<m-1;i++){
       for (j=1;j<m-1;j++){
@@ -93,6 +156,8 @@ void caro_brain(int m,int a[m][m]){
       }
     }
 
+    //check chance double two
+
     for (i=3;i<m-3;i++){
       for (j=2;j<m-3;j++){
 	if (a[i][j]==2){
@@ -104,6 +169,8 @@ void caro_brain(int m,int a[m][m]){
 	}
       }
     }
+
+    //check threat double two
     
     for (i=3;i<m-3;i++){
       for (j=3;j<m-1;j++){
@@ -118,8 +185,8 @@ void caro_brain(int m,int a[m][m]){
     }
 
 
-    choose_x=random()%15;
-    choose_y=random()%15;
+    choose_x=rand()%15;
+    choose_y=rand()%15;
     
   }
 }

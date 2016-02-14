@@ -122,30 +122,30 @@ bool done()
 //reset all buttons
 void reset()
 {
-	int i,j;
-	state=0;
-	for(i=0;i<15;i++)
-	  for(j=0;j<15;j++){
-	    gtk_button_set_label(GTK_BUTTON(buttons[i][j]),"");
-	    gtk_button_set_label(GTK_BUTTON(buttons[i][j]),NULL);
-	    //gtk_widget_show(buttons[i][j]);
+  int i,j;
+  state=0;
+  for(i=0;i<15;i++)
+    for(j=0;j<15;j++){
+      gtk_button_set_label(GTK_BUTTON(buttons[i][j]),"");
+      gtk_button_set_label(GTK_BUTTON(buttons[i][j]),NULL);
+      //gtk_widget_show(buttons[i][j]);
+    }
+  
+  
+  choose_x=7;
+  choose_y=7;
+  if(turn)
+    {
+      
+      computer_mark();
+      gtk_label_set_text(GTK_LABEL(result),"Game in progress");
+      turn=0;
 	  }
-	user_count=0;
-	
-	choose_x=7;
-	choose_y=7;
-	if(turn)
-	  {
-	    
-	    computer_mark();
-	    gtk_label_set_text(GTK_LABEL(result),"Game in progress");
-	    turn=0;
-	  }
-	else
-	{
-		turn=1;
-		gtk_label_set_text(GTK_LABEL(result),"It is your turn to begin");
-	}
+  else
+    {
+      turn=1;
+      gtk_label_set_text(GTK_LABEL(result),"It is your turn to begin");
+    }
 }
 
 
