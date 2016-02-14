@@ -131,13 +131,9 @@ void reset()
 	    //gtk_widget_show(buttons[i][j]);
 	  }
 	user_count=0;
-	computer_count=0;
+	
 	choose_x=7;
 	choose_y=7;
-	user_x=7;
-	user_y=7;
-	computer_x=7;
-	computer_y=7;
 	if(turn)
 	  {
 	    

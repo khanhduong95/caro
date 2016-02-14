@@ -7,8 +7,8 @@
 int check_result(int m, int n, int a[m][n]){
   int i,j;
   //check rows
-  for (i=0;i<12;i++){
-    for (j=0;j<12;j++){
+  for (i=1;i<16;i++){
+    for (j=0;j<11;j++){
       if (a[i][j+1]==a[i][j+2]&&a[i][j+1]==a[i][j+3]&&a[i][j+1]==a[i][j+4]&&a[i][j+1]==a[i][j+5]&&a[i][j+6]!=a[i][j+1]){
 	if (a[i][j]!=a[i][j+1]){
 	  if (a[i][j]==-1){
@@ -29,8 +29,8 @@ int check_result(int m, int n, int a[m][n]){
   
   
   //check columns
-  for (j=0;j<12;j++){
-    for (i=0;i<12;i++){
+  for (j=1;j<16;j++){
+    for (i=0;i<11;i++){
       if (a[i+1][j]==a[i+2][j]&&a[i+1][j]==a[i+3][j]&&a[i+1][j]==a[i+4][j]&&a[i+1][j]==a[i+5][j]&&a[i+6][j]!=a[i+1][j]){
 	if (a[i][j]!=a[i+1][j]){
 	  if (a[i][j]==-1){
@@ -54,8 +54,8 @@ int check_result(int m, int n, int a[m][n]){
   
   //check diagonals 1
 
-  for (j=0;j<12;j++){
-    for (i=0;i<12;i++){
+  for (j=0;j<11;j++){
+    for (i=0;i<11;i++){
       if (a[i+1][j+1]==a[i+2][j+2]&&a[i+1][j+1]==a[i+3][j+3]&&a[i+1][j+1]==a[i+4][j+4]&&a[i+1][j+1]==a[i+5][j+5]&&a[i+1][j+1]!=a[i+6][j+6]){
 	if (a[i][j]!=a[i+1][j+1]){
 	  if (a[i][j]==-1){
@@ -79,7 +79,7 @@ int check_result(int m, int n, int a[m][n]){
 
   //check diagonals 2
 
-  for (j=0;j<12;j++){
+  for (j=0;j<11;j++){
     for (i=16;i>5;i--){
       if (a[i-1][j+1]==a[i-2][j+2]&&a[i-1][j+1]==a[i-3][j+3]&&a[i-1][j+1]==a[i-4][j+4]&&a[i-1][j+1]==a[i-5][j+5]&&a[i-6][j+6]!=a[i-1][j+1]){
 	if (a[i][j]!=a[i-1][j+1]){
@@ -104,6 +104,7 @@ int check_result(int m, int n, int a[m][n]){
   
   return 0;
 }
+
 
 int check_chance_four(int x,int y,int m,int a[m][m]){
 
@@ -381,6 +382,40 @@ int check_chance_four(int x,int y,int m,int a[m][m]){
   
   return 0;
 
+}
+
+int check_threat_four_special(int x,int y,int m,int a[m][m]){
+  //check 4
+
+  if (x<11){
+    if (a[x+1][y]==a[x+2][y]&&a[x+1][y]==a[x+3][y]&&a[x+1][y]==a[x+4][y]&&a[x+5][y]==2&&(a[x+6][y]==0||a[x+6][y]==1)&&a[x+6][y]!=a[x-1][y]&&a[x+1][y]==1) return 1;
+    if (y<11){
+      if (a[x][y+1]==a[x][y+2]&&a[x][y+1]==a[x][y+3]&&a[x][y+1]==a[x][y+4]&&a[x][y+5]==2&&(a[x][y+6]==0||a[x][y+6]==1)&&a[x][y+6]!=a[x][y-1]&&a[x][y+1]==1) return 1;
+      if (a[x+1][y+1]==a[x+2][y+2]&&a[x+1][y+1]==a[x+3][y+3]&&a[x+1][y+1]==a[x+4][y+4]&&a[x+5][y+5]==2&&(a[x+6][y+6]==0||a[x+6][y+6]==1)&&a[x+6][y+6]!=a[x+1][y-1]&&a[x+1][y+1]==1) return 1;
+      
+    }
+    if (y>5){
+      if (a[x][y-1]==a[x][y-2]&&a[x][y-1]==a[x][y-3]&&a[x][y-1]==a[x][y-4]&&a[x][y-5]==2&&(a[x][y-6]==0||a[x][y-6]==1)&&a[x][y-6]!=a[x][y+1]&&a[x][y-1]==1) return 1;
+      if (a[x+1][y-1]==a[x+2][y-2]&&a[x+1][y-1]==a[x+3][y-3]&&a[x+1][y-1]==a[x+4][y-4]&&a[x+5][y-5]==2&&(a[x+6][y-6]==0||a[x+6][y-6]==1)&&a[x+6][y-6]!=a[x+1][y+1]&&a[x+1][y-1]==1) return 1;
+      
+    }
+  }
+
+  if (x>5){
+    if (a[x-1][y]==a[x-2][y]&&a[x-1][y]==a[x-3][y]&&a[x-1][y]==a[x-4][y]&&a[x-5][y]==2&&(a[x-6][y]==0||a[x-6][y]==1)&&a[x-6][y]!=a[x+1][y]&&a[x-1][y]==1) return 1;
+    if (y<11){
+      if (a[x][y+1]==a[x][y+2]&&a[x][y+1]==a[x][y+3]&&a[x][y+1]==a[x][y+4]&&a[x][y+5]==2&&(a[x][y+6]==0||a[x][y+6]==1)&&a[x][y+6]!=a[x][y-1]&&a[x][y+1]==1) return 1;
+      if (a[x-1][y+1]==a[x-2][y+2]&&a[x-1][y+1]==a[x-3][y+3]&&a[x-1][y+1]==a[x-4][y+4]&&a[x-5][y+5]==2&&(a[x-6][y+6]==0||a[x-6][y+6]==1)&&a[x-6][y+6]!=a[x-1][y-1]&&a[x-1][y+1]==1) return 1;
+      
+    }
+    if (y>5){
+      if (a[x][y-1]==a[x][y-2]&&a[x][y-1]==a[x][y-3]&&a[x][y-1]==a[x][y-4]&&a[x][y-5]==2&&(a[x][y-6]==0||a[x][y-6]==1)&&a[x][y-6]!=a[x][y+1]&&a[x][y-1]==1) return 1;
+      if (a[x-1][y-1]==a[x-2][y-2]&&a[x-1][y-1]==a[x-3][y-3]&&a[x-1][y-1]==a[x-4][y-4]&&a[x-5][y-5]==2&&(a[x-6][y-6]==0||a[x-6][y-6]==1)&&a[x-6][y-6]!=a[x-1][y+1]&&a[x-1][y-1]==1) return 1;
+      
+    }
+  }
+  
+  return 0;
 }
 
 
@@ -691,9 +726,53 @@ int check_chance_three(int x,int y,int m,int a[m][m]){
   //check 1+2
 
   if (x>1&&x<14){
+    if (a[x-1][y]==a[x+1][y]&&a[x-1][y]==a[x+2][y]&&a[x+3][y]==2&&a[x-2][y]==2&&a[x-1][y]==0) return 1;
+    if (y>1&&y<14){
+      if (a[x][y-1]==a[x][y+1]&&a[x][y-1]==a[x][y+2]&&a[x][y+3]==2&&a[x][y-2]==2&&a[x][y-1]==0) return 1;
+      else if (a[x-1][y-1]==a[x+1][y+1]&&a[x-1][y-1]==a[x+2][y+2]&&a[x+3][y+3]==2&&a[x-2][y-2]==2&&a[x-1][y-1]==0) return 1;
+    }
+    if (y>2&&y<15){
+      if (a[x][y+1]==a[x][y-1]&&a[x][y+1]==a[x][y-2]&&a[x][y-3]==2&&a[x][y+2]==2&&a[x][y+1]==0) return 1;
+      else if (a[x-1][y+1]==a[x+1][y-1]&&a[x-1][y+1]==a[x+2][y-2]&&a[x+3][y-3]==2&&a[x-2][y+2]==2&&a[x-1][y+1]==0) return 1;
+    }
+
+  }
+  if (x>2&&x<15){
+    if (a[x+1][y]==a[x-1][y]&&a[x+1][y]==a[x-2][y]&&a[x-3][y]==2&&a[x+2][y]==2&&a[x+1][y]==0) return 1;
+    if (y>1&&y<14){
+      if (a[x][y-1]==a[x][y+1]&&a[x][y-1]==a[x][y+2]&&a[x][y+3]==2&&a[x][y-2]==2&&a[x][y-1]==0) return 1;
+      else if (a[x+1][y-1]==a[x-1][y+1]&&a[x+1][y-1]==a[x-2][y+2]&&a[x-3][y+3]==2&&a[x+2][y-2]==2&&a[x+1][y-1]==0) return 1;
+    }
+    if (y>2&&y<15){
+      if (a[x][y+1]==a[x][y-1]&&a[x][y+1]==a[x][y-2]&&a[x][y-3]==2&&a[x][y+2]==2&&a[x][y+1]==0) return 1;
+      else if (a[x+1][y+1]==a[x-1][y-1]&&a[x+1][y+1]==a[x-2][y-2]&&a[x-3][y-3]==2&&a[x+2][y+2]==2&&a[x+1][y+1]==0) return 1;
+    }
+
     
   }
+
   
+  if (x<2||x>13){
+    if (a[x-1][y]==a[x+1][y]&&a[x-1][y]==a[x+2][y]&&a[x+3][y]==2&&a[x-2][y]==2&&a[x-1][y]==0) return 1;
+    if (y>1&&y<14){
+      if (a[x][y-1]==a[x][y+1]&&a[x][y-1]==a[x][y+2]&&a[x][y+3]==2&&a[x][y-2]==2&&a[x][y-1]==0) return 1;
+      else if (a[x-1][y-1]==a[x+1][y+1]&&a[x-1][y-1]==a[x+2][y+2]&&a[x+3][y+3]==2&&a[x-2][y-2]==2&&a[x-1][y-1]==0) return 1;
+    }
+    if (y>2&&y<15){
+      if (a[x][y+1]==a[x][y-1]&&a[x][y+1]==a[x][y-2]&&a[x][y-3]==2&&a[x][y+2]==2&&a[x][y+1]==0) return 1;
+      else if (a[x-1][y+1]==a[x+1][y-1]&&a[x-1][y+1]==a[x+2][y-2]&&a[x+3][y-3]==2&&a[x-2][y+2]==2&&a[x-1][y+1]==0) return 1;
+    }
+    
+  }
+  if (x<3||x>14){
+    if (y>1&&y<14){
+      if (a[x][y-1]==a[x][y+1]&&a[x][y-1]==a[x][y+2]&&a[x][y+3]==2&&a[x][y-2]==2&&a[x][y-1]==0) return 1;
+    }
+    if (y>2&&y<15){
+      if (a[x][y+1]==a[x][y-1]&&a[x][y+1]==a[x][y-2]&&a[x][y-3]==2&&a[x][y+2]==2&&a[x][y+1]==0) return 1;
+    }
+  }
+    
   return 0;
 }
 
@@ -728,6 +807,54 @@ int check_threat_three(int x,int y,int m,int a[m][m]){
   }
   
   //check 1+2
+
+  if (x>1&&x<14){
+    if (a[x-1][y]==a[x+1][y]&&a[x-1][y]==a[x+2][y]&&a[x+3][y]==2&&a[x-2][y]==2&&a[x-1][y]==1) return 1;
+    if (y>1&&y<14){
+      if (a[x][y-1]==a[x][y+1]&&a[x][y-1]==a[x][y+2]&&a[x][y+3]==2&&a[x][y-2]==2&&a[x][y-1]==1) return 1;
+      else if (a[x-1][y-1]==a[x+1][y+1]&&a[x-1][y-1]==a[x+2][y+2]&&a[x+3][y+3]==2&&a[x-2][y-2]==2&&a[x-1][y-1]==1) return 1;
+    }
+    if (y>2&&y<15){
+      if (a[x][y+1]==a[x][y-1]&&a[x][y+1]==a[x][y-2]&&a[x][y-3]==2&&a[x][y+2]==2&&a[x][y+1]==1) return 1;
+      else if (a[x-1][y+1]==a[x+1][y-1]&&a[x-1][y+1]==a[x+2][y-2]&&a[x+3][y-3]==2&&a[x-2][y+2]==2&&a[x-1][y+1]==1) return 1;
+    }
+
+  }
+  if (x>2&&x<15){
+    if (a[x+1][y]==a[x-1][y]&&a[x+1][y]==a[x-2][y]&&a[x-3][y]==2&&a[x+2][y]==2&&a[x+1][y]==1) return 1;
+    if (y>1&&y<14){
+      if (a[x][y-1]==a[x][y+1]&&a[x][y-1]==a[x][y+2]&&a[x][y+3]==2&&a[x][y-2]==2&&a[x][y-1]==1) return 1;
+      else if (a[x+1][y-1]==a[x-1][y+1]&&a[x+1][y-1]==a[x-2][y+2]&&a[x-3][y+3]==2&&a[x+2][y-2]==2&&a[x+1][y-1]==1) return 1;
+    }
+    if (y>2&&y<15){
+      if (a[x][y+1]==a[x][y-1]&&a[x][y+1]==a[x][y-2]&&a[x][y-3]==2&&a[x][y+2]==2&&a[x][y+1]==1) return 1;
+      else if (a[x+1][y+1]==a[x-1][y-1]&&a[x+1][y+1]==a[x-2][y-2]&&a[x-3][y-3]==2&&a[x+2][y+2]==2&&a[x+1][y+1]==1) return 1;
+    }
+
+    
+  }
+
+  
+  if (x<2||x>13){
+    if (a[x-1][y]==a[x+1][y]&&a[x-1][y]==a[x+2][y]&&a[x+3][y]==2&&a[x-2][y]==2&&a[x-1][y]==1) return 1;
+    if (y>1&&y<14){
+      if (a[x][y-1]==a[x][y+1]&&a[x][y-1]==a[x][y+2]&&a[x][y+3]==2&&a[x][y-2]==2&&a[x][y-1]==1) return 1;
+      else if (a[x-1][y-1]==a[x+1][y+1]&&a[x-1][y-1]==a[x+2][y+2]&&a[x+3][y+3]==2&&a[x-2][y-2]==2&&a[x-1][y-1]==1) return 1;
+    }
+    if (y>2&&y<15){
+      if (a[x][y+1]==a[x][y-1]&&a[x][y+1]==a[x][y-2]&&a[x][y-3]==2&&a[x][y+2]==2&&a[x][y+1]==1) return 1;
+      else if (a[x-1][y+1]==a[x+1][y-1]&&a[x-1][y+1]==a[x+2][y-2]&&a[x+3][y-3]==2&&a[x-2][y+2]==2&&a[x-1][y+1]==1) return 1;
+    }
+    
+  }
+  if (x<3||x>14){
+    if (y>1&&y<14){
+      if (a[x][y-1]==a[x][y+1]&&a[x][y-1]==a[x][y+2]&&a[x][y+3]==2&&a[x][y-2]==2&&a[x][y-1]==1) return 1;
+    }
+    if (y>2&&y<15){
+      if (a[x][y+1]==a[x][y-1]&&a[x][y+1]==a[x][y-2]&&a[x][y-3]==2&&a[x][y+2]==2&&a[x][y+1]==1) return 1;
+    }
+  }
   
   
   return 0;
