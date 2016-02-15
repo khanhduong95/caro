@@ -1052,7 +1052,7 @@ int check_chance_three_diagonal1(int x,int y,int m,int a[m][m]){
 	  
 	  if (a[x+1][y+1]==a[x+2][y+2]&&a[x+1][y+1]==a[x+3][y+3]){
 	    if (a[x+1][y+1]==0){
-	      if (a[x-1][y-1]!=1&&a[x+4][y+4]!=1) return 1;
+	      if ((a[x-1][y-1]==2||a[x+4][y+4]==2)&&a[x-1][y-1]!=1&&a[x+4][y+4]!=1) return 1;
 	      else if (x>1&&y>1&&a[x-1][y-1]==2&&a[x-2][y-2]!=1) return 1;
 	      else if (x<12&&y<12&&a[x+4][y+4]==2&&a[x+5][y+5]!=1) return 1;
 	      
@@ -1095,7 +1095,7 @@ int check_chance_three_diagonal1(int x,int y,int m,int a[m][m]){
 	  //continuous
 	  if (a[x-1][y-1]==a[x-2][y-2]&&a[x-1][y-1]==a[x-3][y-3]){
 	    if (a[x-1][y-1]==0){
-	      if (a[x+1][y+1]!=1&&a[x-4][y-4]!=1) return 1;
+	      if ((a[x+1][y+1]==2||a[x-4][y-4]==2)&&a[x+1][y+1]!=1&&a[x-4][y-4]!=1) return 1;
 	      else if (x<15&&y<15&&a[x+1][y+1]==2&&a[x+2][y+2]!=1) return 1;
 	      else if (x>4&&y>4&&a[x-4][y-4]==2&&a[x-5][y-5]!=1) return 1;
 	      
@@ -1145,7 +1145,7 @@ int check_threat_three_diagonal1(int x,int y,int m,int a[m][m]){
 	  
 	  if (a[x+1][y+1]==a[x+2][y+2]&&a[x+1][y+1]==a[x+3][y+3]){
 	    if (a[x+1][y+1]==1){
-	      if (a[x-1][y-1]!=0&&a[x+4][y+4]!=0) return 1;
+	      if ((a[x-1][y-1]==2||a[x+4][y+4]==2)&&a[x-1][y-1]!=0&&a[x+4][y+4]!=0) return 1;
 	      else if (x>1&&y>1&&a[x-1][y-1]==2&&a[x-2][y-2]!=0) return 1;
 	      else if (x<12&&y<12&&a[x+4][y+4]==2&&a[x+5][y+5]!=0) return 1;
 	    }
@@ -1189,7 +1189,7 @@ int check_threat_three_diagonal1(int x,int y,int m,int a[m][m]){
 	  //continuous
 	  if (a[x-1][y-1]==a[x-2][y-2]&&a[x-1][y-1]==a[x-3][y-3]){
 	    if (a[x-1][y-1]==1){
-	      if (a[x+1][y+1]!=0&&a[x-4][y-4]!=0) return 1;
+	      if ((a[x+1][y+1]==2||a[x-4][y-4]==2)&&a[x+1][y+1]!=0&&a[x-4][y-4]!=0) return 1;
 	      else if (x<15&&y<15&&a[x-1][y+1]==2&&a[x-2][y+2]!=0) return 1;
 	      else if (x>4&&y>4&&a[x-4][y-4]==2&&a[x-5][y-5]!=0) return 1;
 	    }
@@ -1239,7 +1239,7 @@ int check_chance_three_diagonal2(int x,int y,int m,int a[m][m]){
 	  
 	  if (a[x+1][y-1]==a[x+2][y-2]&&a[x+1][y-1]==a[x+3][y-3]){
 	    if (a[x+1][y-1]==0){
-	      if (a[x-1][y+1]!=1&&a[x+4][y-4]!=1) return 1;
+	      if ((a[x-1][y+1]==2||a[x+4][y-4]==2)&&a[x-1][y+1]!=1&&a[x+4][y-4]!=1) return 1;
 	      else if (x>1&&y<15&&a[x-1][y+1]==2&&a[x-2][y+2]!=1) return 1;
 	      else if (x<12&&y>4&&a[x+4][y-4]==2&&a[x+5][y-5]!=1) return 1;
 	      
@@ -1282,7 +1282,7 @@ int check_chance_three_diagonal2(int x,int y,int m,int a[m][m]){
 	  //continuous
 	  if (a[x-1][y+1]==a[x-2][y+2]&&a[x-1][y+1]==a[x-3][y+3]){
 	    if (a[x-1][y+1]==0){
-	      if (a[x+1][y-1]!=1&&a[x-4][y+4]!=1) return 1;
+	      if ((a[x+1][y-1]==2||a[x-4][y+4]==2)&&a[x+1][y-1]!=1&&a[x-4][y+4]!=1) return 1;
 	      else if (x<15&&y>1&&a[x+1][y-1]==2&&a[x+2][y-2]!=1) return 1;
 	      else if (x>4&&y<12&&a[x-4][y+4]==2&&a[x-5][y+5]!=1) return 1;
 	      
@@ -1333,7 +1333,7 @@ int check_threat_three_diagonal2(int x,int y,int m,int a[m][m]){
 	  
 	  if (a[x+1][y-1]==a[x+2][y-2]&&a[x+1][y-1]==a[x+3][y-3]){
 	    if (a[x+1][y-1]==1){
-	      if (a[x-1][y+1]!=0&&a[x+4][y-4]!=0) return 1;
+	      if ((a[x-1][y+1]==2||a[x+4][y-4]==2)&&a[x-1][y+1]!=0&&a[x+4][y-4]!=0) return 1;
 	      else if (x>1&&y<15&&a[x-1][y+1]==2&&a[x-2][y+2]!=0) return 1;
 	      else if (x<12&&y>4&&a[x+4][y-4]==2&&a[x+5][y-5]!=0) return 1;
 	    }
@@ -1376,7 +1376,7 @@ int check_threat_three_diagonal2(int x,int y,int m,int a[m][m]){
 	  //continuous
 	  if (a[x-1][y+1]==a[x-2][y+2]&&a[x-1][y+1]==a[x-3][y+3]){
 	    if (a[x-1][y+1]==1){
-	      if (a[x+1][y-1]!=0&&a[x-4][y+4]!=0) return 1;
+	      if ((a[x+1][y-1]==2||a[x-4][y+4]==2)&&a[x+1][y-1]!=0&&a[x-4][y+4]!=0) return 1;
 	      else if (x<15&&y>1&&a[x+1][y-1]==2&&a[x+2][y-2]!=0) return 1;
 	      else if (x>4&&y<12&&a[x-4][y+4]==2&&a[x-5][y+5]!=0) return 1;
 	    }
