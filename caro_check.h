@@ -719,13 +719,20 @@ int check_chance_three_vertical(int x,int y,int m,int a[m][m]){
 	  else if (x<12&&a[x+4][y]==2&&a[x+5][y]!=1) return 1;
 	  
 	}
-    }
+      }
       
-      //far continuous
       if (x<12) {
+	//far continuous
+
 	if (a[x+2][y]==a[x+3][y]&&a[x+2][y]==a[x+4][y]&&a[x+1][y]==2&&a[x+2][y]==0){
 	  if ((a[x-1][y]!=1||a[x+5][y]!=1)&&a[x-1][y]!=0) return 1;
 	}
+
+	//discrete
+	if (a[x+1][y]==a[x+4][y]&&((a[x+1][y]==a[x+2][y]&&a[x+3][y]==2)||(a[x+1][y]==a[x+3][y]&&a[x+2][y]==2))&&a[x+1][y]==0){
+	  if ((a[x-1][y]!=1||a[x+5][y]!=1)&&a[x-1][y]!=0) return 1;
+	}
+	
       }
       
       
@@ -752,13 +759,18 @@ int check_chance_three_vertical(int x,int y,int m,int a[m][m]){
 	  
 	}
       }
-      
-      //far continuous
-      
+            
       if (x>4) {
+	//far continuous
 	if (a[x-2][y]==a[x-3][y]&&a[x-2][y]==a[x-4][y]&&a[x-1][y]==2&&a[x-2][y]==0){
 	  if ((a[x+1][y]!=1||a[x-5][y]!=1)&&a[x+1][y]!=0) return 1;
 	}
+	
+	//discrete
+	if (a[x-1][y]==a[x-4][y]&&((a[x-1][y]==a[x-2][y]&&a[x-3][y]==2)||(a[x-1][y]==a[x-3][y]&&a[x-2][y]==2))&&a[x-1][y]==0){
+	  if ((a[x+1][y]!=1||a[x-5][y]!=1)&&a[x+1][y]!=0) return 1;
+	}
+	
       }
       
     }
@@ -791,12 +803,16 @@ int check_threat_three_vertical(int x,int y,int m,int a[m][m]){
 	}
       }
       
-      //far continuous
       if (x<12) {
+	//far continuous
 	if (a[x+2][y]==a[x+3][y]&&a[x+2][y]==a[x+4][y]&&a[x+1][y]==2&&a[x+2][y]==1){
 	  if ((a[x-1][y]!=0||a[x+5][y]!=0)&&a[x-1][y]!=1) return 1;
 	}
-	
+
+	//discrete
+	if (a[x+1][y]==a[x+4][y]&&((a[x+1][y]==a[x+2][y]&&a[x+3][y]==2)||(a[x+1][y]==a[x+3][y]&&a[x+2][y]==2))&&a[x+1][y]==1){
+	  if ((a[x-1][y]!=0||a[x+5][y]!=0)&&a[x-1][y]!=1) return 1;
+	}
 	
       }
       
@@ -823,14 +839,19 @@ int check_threat_three_vertical(int x,int y,int m,int a[m][m]){
 	}
       }
       
-      //far continuous
       
       if (x>4) {
+	//far continuous
 	if (a[x-2][y]==a[x-3][y]&&a[x-2][y]==a[x-4][y]&&a[x-1][y]==2&&a[x-2][y]==1){
 	  if ((a[x+1][y]!=0||a[x-5][y]!=0)&&a[x+1][y]!=1) return 1;
 	}
-      }
-      
+	
+	//discrete
+	if (a[x-1][y]==a[x-4][y]&&((a[x-1][y]==a[x-2][y]&&a[x-3][y]==2)||(a[x-1][y]==a[x-3][y]&&a[x-2][y]==2))&&a[x-1][y]==1){
+	  if ((a[x+1][y]!=0||a[x-5][y]!=0)&&a[x+1][y]!=1) return 1;
+	}
+	
+      }      
       
     }
   }
@@ -864,11 +885,17 @@ int check_chance_three_horizontal(int x,int y,int m,int a[m][m]){
 	}
       }
       
-      //far continuous
       if (y<12) {
+	//far continuous
 	if (a[x][y+2]==a[x][y+3]&&a[x][y+2]==a[x][y+4]&&a[x][y+1]==2&&a[x][y+2]==0){
 	  if ((a[x][y-1]!=1||a[x][y+5]!=1)&&a[x][y-1]!=0) return 1;
 	}
+	
+	//discrete
+	if (a[x][y+1]==a[x][y+4]&&((a[x][y+1]==a[x][y+2]&&a[x][y+3]==2)||(a[x][y+1]==a[x][y+3]&&a[x][y+2]==2))&&a[x][y+1]==0){
+	  if ((a[x][y-1]!=1||a[x][y+5]!=1)&&a[x][y-1]!=0) return 1;
+	}
+	
       }
       
     }
@@ -897,13 +924,18 @@ int check_chance_three_horizontal(int x,int y,int m,int a[m][m]){
 	  
 	}
       }
-      
-      //far continuous
-    
+          
       if (y>4) {
+	//far continuous
 	if (a[x][y-2]==a[x][y-3]&&a[x][y-2]==a[x][y-4]&&a[x][y-1]==2&&a[x][y-2]==0){
 	  if ((a[x][y+1]!=1||a[x][y-5]!=1)&&a[x][y+1]!=0) return 1;
 	}
+	
+	//discrete
+	if (a[x][y-1]==a[x][y-4]&&((a[x][y-1]==a[x][y-2]&&a[x][y-3]==2)||(a[x][y-1]==a[x][y-3]&&a[x][y-2]==2))&&a[x][y-1]==0){
+	  if ((a[x][y+1]!=1||a[x][y-5]!=1)&&a[x][y+1]!=0) return 1;
+	}
+	
       }
       
       
@@ -937,11 +969,17 @@ int check_threat_three_horizontal(int x,int y,int m,int a[m][m]){
 	}
       }
       
-      //far continuous
       if (y<12) {
+	//far continuous
 	if (a[x][y+2]==a[x][y+3]&&a[x][y+2]==a[x][y+4]&&a[x][y+1]==2&&a[x][y+2]==1){
 	  if ((a[x][y-1]!=0||a[x][y+5]!=0)&&a[x][y-1]!=1) return 1;
 	}
+	
+	//discrete
+	if (a[x][y+1]==a[x][y+4]&&((a[x][y+1]==a[x][y+2]&&a[x][y+3]==2)||(a[x][y+1]==a[x][y+3]&&a[x][y+2]==2))&&a[x][y+1]==1){
+	  if ((a[x][y-1]!=0||a[x][y+5]!=0)&&a[x][y-1]!=1) return 1;
+	}
+	
       }
       
       
@@ -970,13 +1008,18 @@ int check_threat_three_horizontal(int x,int y,int m,int a[m][m]){
 	  else if (y>4&&a[x][y-4]==2&&a[x][y-5]!=0) return 1;
 	}
       }
-      
-      //far continuous
-      
+            
       if (y>4) {
+	//far continuous
 	if (a[x][y-2]==a[x][y-3]&&a[x][y-2]==a[x][y-4]&&a[x][y-1]==2&&a[x][y-2]==1){
 	  if ((a[x][y+1]!=0||a[x][y-5]!=0)&&a[x][y+1]!=1) return 1;
 	}
+	
+	//discrete
+	if (a[x][y-1]==a[x][y-4]&&((a[x][y-1]==a[x][y-2]&&a[x][y-3]==2)||(a[x][y-1]==a[x][y-3]&&a[x][y-2]==2))&&a[x][y-1]==1){
+	  if ((a[x][y+1]!=0||a[x][y-5]!=0)&&a[x][y+1]!=1) return 1;
+	}	
+	
       }
       
     }
@@ -1016,11 +1059,16 @@ int check_chance_three_diagonal1(int x,int y,int m,int a[m][m]){
 	    }
 	  }
 	  
-	  //far continuous
 	  if (x<12&&y<12){
+	    //far continuous
 	    if (a[x+2][y+2]==a[x+3][y+3]&&a[x+2][y+2]==a[x+4][y+4]&&a[x+2][y+2]==0){
 	      if (a[x+1][y+1]==2&&(a[x-1][y-1]!=1||a[x+5][y+5]!=1)&&a[x-1][y-1]!=0) return 1;
 	    }
+	    //discrete
+	    if (a[x+1][y+1]==a[x+4][y+4]&&((a[x+1][y+1]==a[x+2][y+2]&&a[x+3][y+3]==2)||(a[x+1][y+1]==a[x+3][y+3]&&a[x+2][y+2]==2))&&a[x+1][y+1]==0){
+	      if ((a[x-1][y-1]!=1||a[x+5][y+5]!=1)&&a[x-1][y-1]!=0) return 1;
+	    }	    
+	    
 	  }
 	  
 	}	
@@ -1038,8 +1086,7 @@ int check_chance_three_diagonal1(int x,int y,int m,int a[m][m]){
 	if (x>3&&y>3&&a[x-3][y-3]==2&&a[x-4][y-4]!=1&&a[x-4][y-4]!=0) return 1;	  
 	else if (x<14&&y<14&&a[x+2][y+2]==2&&a[x+3][y+3]!=1&&a[x+3][y+3]!=0) return 1;
 	
-      }    
-      
+      }       
       
       if (x>3){
 	
@@ -1055,11 +1102,17 @@ int check_chance_three_diagonal1(int x,int y,int m,int a[m][m]){
 	    }
 	  }
 	  
-	  //far continuous
 	  if (x>4&&y>4){
+	    //far continuous
+
 	    if (a[x-2][y-2]==a[x-3][y-3]&&a[x-2][y-2]==a[x-4][y-4]&&a[x-2][y-2]==0){
 	      if (a[x-1][y-1]==2&&(a[x+1][y+1]!=1||a[x-5][y-5]!=1)&&a[x+1][y+1]!=0) return 1;
 	    }
+	    //discrete
+	    if (a[x-1][y-1]==a[x-4][y-4]&&((a[x-1][y-1]==a[x-2][y-2]&&a[x-3][y-3]==2)||(a[x-1][y-1]==a[x-3][y-3]&&a[x-2][y-2]==2))&&a[x-1][y-1]==0){
+	      if ((a[x+1][y+1]!=1||a[x-5][y-5]!=1)&&a[x+1][y+1]!=0) return 1;
+	    }
+	    
 	  }  
 	  
 	}
@@ -1099,11 +1152,18 @@ int check_threat_three_diagonal1(int x,int y,int m,int a[m][m]){
 	  }
 	}
 	
-	//far continuous
 	if (x<12&&y<12){
+	  //far continuous
 	  if (a[x+2][y+2]==a[x+3][y+3]&&a[x+2][y+2]==a[x+4][y+4]&&a[x+2][y+2]==1){
 	    if (a[x+1][y+1]==2&&(a[x-1][y-1]!=0||a[x+5][y+5]!=0)&&a[x-1][y-1]!=1) return 1;
 	  }
+	  
+	  //discrete
+	  if (a[x+1][y+1]==a[x+4][y+4]&&((a[x+1][y+1]==a[x+2][y+2]&&a[x+3][y+3]==2)||(a[x+1][y+1]==a[x+3][y+3]&&a[x+2][y+2]==2))&&a[x+1][y+1]==1){
+	    if ((a[x-1][y-1]!=0||a[x+5][y+5]!=0)&&a[x-1][y-1]!=1) return 1;
+	  }	    
+	  
+	  
 	}    
 	
 	
@@ -1135,11 +1195,17 @@ int check_threat_three_diagonal1(int x,int y,int m,int a[m][m]){
 	    }
 	  }
 	  
-	  //far continuous
 	  if (x>4&&y>4){
+	    //far continuous
 	    if (a[x-2][y-2]==a[x-3][y-3]&&a[x-2][y-2]==a[x-4][y-4]&&a[x-2][y-2]==1){
 	      if (a[x-1][y-1]==2&&(a[x+1][y+1]!=0||a[x-5][y-5]!=0)&&a[x+1][y+1]!=1) return 1;
 	    }
+	    
+	    //discrete
+	    if (a[x-1][y-1]==a[x-4][y-4]&&((a[x-1][y-1]==a[x-2][y-2]&&a[x-3][y-3]==2)||(a[x-1][y-1]==a[x-3][y-3]&&a[x-2][y-2]==2))&&a[x-1][y-1]==1){
+	      if ((a[x+1][y+1]!=0||a[x-5][y-5]!=0)&&a[x+1][y+1]!=1) return 1;
+	    }	    
+	    
 	  }   
 	  
 	}
@@ -1180,11 +1246,17 @@ int check_chance_three_diagonal2(int x,int y,int m,int a[m][m]){
 	    }
 	  }
 	  
-	  //far continuous
 	  if (x<12&&y>4){
+	    //far continuous
 	    if (a[x+2][y-2]==a[x+3][y-3]&&a[x+2][y-2]==a[x+4][y-4]&&a[x+2][y-2]==0){
 	      if (a[x+1][y-1]==2&&(a[x-1][y+1]!=1||a[x+5][y-5]!=1)&&a[x-1][y+1]!=0) return 1;
 	    }
+	    
+	    //discrete
+	    if (a[x+1][y-1]==a[x+4][y-4]&&((a[x+1][y-1]==a[x+2][y-2]&&a[x+3][y-3]==2)||(a[x+1][y-1]==a[x+3][y-3]&&a[x+2][y-2]==2))&&a[x+1][y-1]==0){
+	      if ((a[x-1][y+1]!=1||a[x+5][y-5]!=1)&&a[x-1][y+1]!=0) return 1;
+	    }	    
+	    
 	  }
 	  
 	} 
@@ -1217,11 +1289,17 @@ int check_chance_three_diagonal2(int x,int y,int m,int a[m][m]){
 	    }
 	  }
 	  
-	  //far continuous
 	  if (x>4&&y<12){
+	    //far continuous
 	    if (a[x-2][y+2]==a[x-3][y+3]&&a[x-2][y+2]==a[x-4][y+4]&&a[x-2][y+2]==0){
 	      if (a[x-1][y+1]==2&&(a[x+1][y-1]!=1||a[x-5][y+5]!=1)&&a[x+1][y-1]!=0) return 1;
-	}
+	    }
+	    
+	    //discrete
+	    if (a[x-1][y+1]==a[x-4][y+4]&&((a[x-1][y+1]==a[x-2][y+2]&&a[x-3][y+3]==2)||(a[x-1][y+1]==a[x-3][y+3]&&a[x-2][y+2]==2))&&a[x-1][y+1]==0){
+	      if ((a[x+1][y-1]!=1||a[x-5][y+5]!=1)&&a[x+1][y-1]!=0) return 1;
+	    }	    
+	    
 	  }  
 	  
 	}    
@@ -1263,13 +1341,18 @@ int check_threat_three_diagonal2(int x,int y,int m,int a[m][m]){
 	  
 	}
 	
-	//far continuous
 	if (x<12&&y>4){
+	  //far continuous
 	  if (a[x+2][y-2]==a[x+3][y-3]&&a[x+2][y-2]==a[x+4][y-4]&&a[x+2][y-2]==1){
 	    if (a[x+1][y-1]==2&&(a[x-1][y+1]!=0||a[x+5][y-5]!=0)&&a[x-1][y+1]!=1) return 1;
 	  }
-	}
-	
+
+	  //discrete
+	  if (a[x+1][y-1]==a[x+4][y-4]&&((a[x+1][y-1]==a[x+2][y-2]&&a[x+3][y-3]==2)||(a[x+1][y-1]==a[x+3][y-3]&&a[x+2][y-2]==2))&&a[x+1][y-1]==1){
+	    if ((a[x-1][y+1]!=0||a[x+5][y-5]!=0)&&a[x-1][y+1]!=1) return 1;
+	  }        	  
+	  
+	}	
 	
       }
       
@@ -1304,6 +1387,12 @@ int check_threat_three_diagonal2(int x,int y,int m,int a[m][m]){
 	    if (a[x-2][y+2]==a[x-3][y+3]&&a[x-2][y+2]==a[x-4][y+4]&&a[x-2][y+2]==1){
 	      if (a[x-1][y+1]==2&&(a[x+1][y-1]!=0||a[x-5][y+5]!=0)&&a[x+1][y-1]!=1) return 1;
 	    }
+
+	    //discrete
+	    if (a[x-1][y+1]==a[x-4][y+4]&&((a[x-1][y+1]==a[x-2][y+2]&&a[x-3][y+3]==2)||(a[x-1][y+1]==a[x-3][y+3]&&a[x-2][y+2]==2))&&a[x-1][y+1]==1){
+	      if ((a[x+1][y-1]!=0||a[x-5][y+5]!=0)&&a[x+1][y-1]!=1) return 1;
+	    }	    	    
+	    
 	  }  
 	  
 	}    
