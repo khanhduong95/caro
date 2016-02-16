@@ -700,13 +700,15 @@ int check_chance_three_vertical(int x,int y,int m,int a[m][m]){
   
     //discrete
     
-    
     if (a[x-1][y]==a[x+1][y]&&a[x-1][y]==a[x+2][y]&&a[x-1][y]==0){
       if (x<13&&a[x+3][y]==2&&a[x+4][y]!=1&&a[x+4][y]!=0) return 1;	  
       else if (x>2&&a[x-2][y]==2&&a[x-3][y]!=1&&a[x-3][y]!=0) return 1;
       
     }
-    
+
+    //discrete xx--x x--xx
+
+    if (x>2&&a[x-2][y]==0&&a[x-2][y]==a[x+2][y]&&((a[x-1][y]==0&&a[x+1][y]==2)||(a[x+1][y]==0&&a[x-1][y]==2))&&(a[x-3][y]!=1||a[x+3][y]!=1)&&a[x-3][y]!=0&&a[x+3][y]!=0) return 1;
     
     if (x<13){
       
@@ -719,6 +721,12 @@ int check_chance_three_vertical(int x,int y,int m,int a[m][m]){
 	  else if (x<12&&a[x+4][y]==2&&a[x+5][y]!=1) return 1;
 	  
 	}
+      }
+
+      //discrete x-x-x,x--xx
+
+      if (x>1&&a[x-1][y]==a[x+3][y]&&((a[x+1][y]==0&&a[x+2][y]==2)||(a[x+2][y]==0&&a[x+1][y]==2))&&a[x-1][y]==0){
+	if ((a[x-2][y]!=1||a[x+4][y]!=1)&&a[x-2][y]!=0&&a[x+4][y]!=0) return 1; 
       }
       
       if (x<12) {
@@ -733,8 +741,7 @@ int check_chance_three_vertical(int x,int y,int m,int a[m][m]){
 	  if ((a[x-1][y]!=1||a[x+5][y]!=1)&&a[x-1][y]!=0) return 1;
 	}
 	
-      }
-      
+      }      
       
     }
     
@@ -759,7 +766,13 @@ int check_chance_three_vertical(int x,int y,int m,int a[m][m]){
 	  
 	}
       }
-            
+
+      //discrete x-x-x,x--xx
+      
+      if (x<15&&a[x+1][y]==a[x-3][y]&&((a[x-1][y]==0&&a[x-2][y]==2)||(a[x-2][y]==0&&a[x-1][y]==2))&&a[x+1][y]==0){
+	if ((a[x+2][y]!=1||a[x-4][y]!=1)&&a[x+2][y]!=0&&a[x-4][y]!=0) return 1; 
+      }      
+      
       if (x>4) {
 	//far continuous
 	if (a[x-2][y]==a[x-3][y]&&a[x-2][y]==a[x-4][y]&&a[x-1][y]==2&&a[x-2][y]==0){
@@ -784,13 +797,16 @@ int check_threat_three_vertical(int x,int y,int m,int a[m][m]){
 
   if (x<14){
     //discrete
-
     
     if (a[x-1][y]==a[x+1][y]&&a[x-1][y]==a[x+2][y]&&a[x-1][y]==1){
       if (x<13&&a[x+3][y]==2&&a[x+4][y]!=0&&a[x+4][y]!=1) return 1;	  
       else if (x>2&&a[x-2][y]==2&&a[x-3][y]!=0&&a[x-3][y]!=1) return 1;
       
     }
+
+    //discrete xx--x x--xx
+    
+    if (x>2&&a[x-2][y]==1&&a[x-2][y]==a[x+2][y]&&((a[x-1][y]==1&&a[x+1][y]==2)||(a[x+1][y]==1&&a[x-1][y]==2))&&(a[x-3][y]!=0||a[x+3][y]!=0)&&a[x-3][y]!=1&&a[x+3][y]!=1) return 1;
     
     if (x<13){
       
@@ -802,6 +818,12 @@ int check_threat_three_vertical(int x,int y,int m,int a[m][m]){
 	  else if (x<12&&a[x+4][y]==2&&a[x+5][y]!=0) return 1;
 	}
       }
+
+      //discrete x-x-x,x--xx
+      
+      if (x>1&&a[x-1][y]==a[x+3][y]&&((a[x+1][y]==1&&a[x+2][y]==2)||(a[x+2][y]==1&&a[x+1][y]==2))&&a[x-1][y]==1){
+	if ((a[x-2][y]!=0||a[x+4][y]!=0)&&a[x-2][y]!=1&&a[x+4][y]!=1) return 1; 
+      }      
       
       if (x<12) {
 	//far continuous
@@ -839,6 +861,11 @@ int check_threat_three_vertical(int x,int y,int m,int a[m][m]){
 	}
       }
       
+      //discrete x-x-x,x--xx
+      
+      if (x<15&&a[x+1][y]==a[x-3][y]&&((a[x-1][y]==1&&a[x-2][y]==2)||(a[x-2][y]==1&&a[x-1][y]==2))&&a[x+1][y]==1){
+	if ((a[x+2][y]!=0||a[x-4][y]!=0)&&a[x+2][y]!=1&&a[x-4][y]!=1) return 1; 
+      }
       
       if (x>4) {
 	//far continuous
@@ -864,14 +891,17 @@ int check_chance_three_horizontal(int x,int y,int m,int a[m][m]){
 
   if (y<14){
     
-    //discrete
-    
+    //discrete    
     
     if (a[x][y-1]==a[x][y+1]&&a[x][y-1]==a[x][y+2]&&a[x][y-1]==0){
       if (y<13&&a[x][y+3]==2&&a[x][y+4]!=1&&a[x][y+4]!=0) return 1;	  
       else if (y>2&&a[x][y-2]==2&&a[x][y-3]!=1&&a[x][y-3]!=0) return 1;
       
     }
+
+    //discrete xx--x x--xx
+    
+    if (y>2&&a[x][y-2]==0&&a[x][y-2]==a[x][y+2]&&((a[x][y-1]==0&&a[x][y+1]==2)||(a[x][y+1]==0&&a[x][y-1]==2))&&(a[x][y-3]!=1||a[x][y+3]!=1)&&a[x][y-3]!=0&&a[x][y+3]!=0) return 1;
     
     if (y<13){
       
@@ -884,6 +914,12 @@ int check_chance_three_horizontal(int x,int y,int m,int a[m][m]){
 	  
 	}
       }
+
+      //discrete x-x-x,x--xx
+      
+      if (y>1&&a[x][y-1]==a[x][y+3]&&((a[x][y+1]==0&&a[x][y+2]==2)||(a[x][y+2]==0&&a[x][y+1]==2))&&a[x][y-1]==0){
+	if ((a[x][y-2]!=1||a[x][y+4]!=1)&&a[x][y-2]!=0&&a[x][y+4]!=0) return 1; 
+      }      
       
       if (y<12) {
 	//far continuous
@@ -901,7 +937,6 @@ int check_chance_three_horizontal(int x,int y,int m,int a[m][m]){
     }
     
   }
-
   
   if (y>2){
     
@@ -924,7 +959,13 @@ int check_chance_three_horizontal(int x,int y,int m,int a[m][m]){
 	  
 	}
       }
-          
+
+      //discrete x-x-x,x--xx
+      
+      if (y<15&&a[x][y+1]==a[x][y-3]&&((a[x][y-1]==0&&a[x][y-2]==2)||(a[x][y-2]==0&&a[x][y-1]==2))&&a[x][y+1]==0){
+	if ((a[x][y+2]!=1||a[x][y-4]!=1)&&a[x][y+2]!=0&&a[x][y-4]!=0) return 1; 
+      }            
+      
       if (y>4) {
 	//far continuous
 	if (a[x][y-2]==a[x][y-3]&&a[x][y-2]==a[x][y-4]&&a[x][y-1]==2&&a[x][y-2]==0){
@@ -954,8 +995,11 @@ int check_threat_three_horizontal(int x,int y,int m,int a[m][m]){
     if (a[x][y-1]==a[x][y+1]&&a[x][y-1]==a[x][y+2]&&a[x][y-1]==1){
       if (y<13&&a[x][y+3]==2&&a[x][y+4]!=0&&a[x][y+4]!=1) return 1;	  
       else if (y>2&&a[x][y-2]==2&&a[x][y-3]!=0&&a[x][y-3]!=1) return 1;
-      
     }   
+
+    //discrete xx--x x--xx
+    
+    if (y>2&&a[x][y-2]==1&&a[x][y-2]==a[x][y+2]&&((a[x][y-1]==1&&a[x][y+1]==2)||(a[x][y+1]==1&&a[x][y-1]==2))&&(a[x][y-3]!=0||a[x][y+3]!=0)&&a[x][y-3]!=1&&a[x][y+3]!=1) return 1;
     
     if (y<13){
       
@@ -968,6 +1012,12 @@ int check_threat_three_horizontal(int x,int y,int m,int a[m][m]){
 	  else if (y<12&&a[x][y+4]==2&&a[x][y+5]!=0) return 1;
 	}
       }
+
+      //discrete x-x-x,x--xx
+      
+      if (y>1&&a[x][y-1]==a[x][y+3]&&((a[x][y+1]==1&&a[x][y+2]==2)||(a[x][y+2]==1&&a[x][y+1]==2))&&a[x][y-1]==1){
+	if ((a[x][y-2]!=0||a[x][y+4]!=0)&&a[x][y-2]!=1&&a[x][y+4]!=1) return 1; 
+      }      
       
       if (y<12) {
 	//far continuous
@@ -980,8 +1030,7 @@ int check_threat_three_horizontal(int x,int y,int m,int a[m][m]){
 	  if ((a[x][y-1]!=0||a[x][y+5]!=0)&&a[x][y-1]!=1) return 1;
 	}
 	
-      }
-      
+      }      
       
     }
     
@@ -994,8 +1043,7 @@ int check_threat_three_horizontal(int x,int y,int m,int a[m][m]){
       if (y>3&&a[x][y-3]==2&&a[x][y-4]!=0&&a[x][y-4]!=1) return 1;	  
       else if (y<14&&a[x][y+2]==2&&a[x][y+3]!=0&&a[x][y+3]!=1) return 1;
       
-    }    
-    
+    }       
     
     if (y>3){
       
@@ -1008,7 +1056,13 @@ int check_threat_three_horizontal(int x,int y,int m,int a[m][m]){
 	  else if (y>4&&a[x][y-4]==2&&a[x][y-5]!=0) return 1;
 	}
       }
-            
+
+      //discrete x-x-x,x--xx
+      
+      if (y<15&&a[x][y+1]==a[x][y-3]&&((a[x][y-1]==1&&a[x][y-2]==2)||(a[x][y-2]==1&&a[x][y-1]==2))&&a[x][y+1]==1){
+	if ((a[x][y+2]!=0||a[x][y-4]!=0)&&a[x][y+2]!=1&&a[x][y-4]!=1) return 1; 
+      }            
+      
       if (y>4) {
 	//far continuous
 	if (a[x][y-2]==a[x][y-3]&&a[x][y-2]==a[x][y-4]&&a[x][y-1]==2&&a[x][y-2]==1){
@@ -1028,7 +1082,6 @@ int check_threat_three_horizontal(int x,int y,int m,int a[m][m]){
   return 0;
 }
 
-
 int check_chance_three_diagonal1(int x,int y,int m,int a[m][m]){
 
   if (x<14){
@@ -1039,10 +1092,12 @@ int check_chance_three_diagonal1(int x,int y,int m,int a[m][m]){
       
       if (a[x-1][y-1]==a[x+1][y+1]&&a[x-1][y-1]==a[x+2][y+2]&&a[x-1][y-1]==0){
 	if (x<13&&y<13&&a[x+3][y+3]==2&&a[x+4][y+4]!=1&&a[x+4][y+4]!=0) return 1;	  
-	else if (x>2&&y>2&&a[x-2][y-2]==2&&a[x-3][y-3]!=1&&a[x-3][y-3]!=0) return 1;
-	
+	else if (x>2&&y>2&&a[x-2][y-2]==2&&a[x-3][y-3]!=1&&a[x-3][y-3]!=0) return 1;	
       }
+
+      //discrete xx--x x--xx
       
+      if (x>2&&y>2&&a[x-2][y-2]==0&&a[x-2][y-2]==a[x+2][y+2]&&((a[x-1][y-1]==0&&a[x+1][y+1]==2)||(a[x+1][y+1]==0&&a[x-1][y-1]==2))&&(a[x-3][y-3]!=1||a[x+3][y+3]!=1)&&a[x-3][y-3]!=0&&a[x+3][y+3]!=0) return 1;
       
       if (x<13){    
 	
@@ -1058,6 +1113,12 @@ int check_chance_three_diagonal1(int x,int y,int m,int a[m][m]){
 	      
 	    }
 	  }
+
+	  //discrete x-x-x,x--xx
+	  
+	  if (x>1&&y>1&&a[x-1][y-1]==a[x+3][y+3]&&((a[x+1][y+1]==0&&a[x+2][y+2]==2)||(a[x+2][y+2]==0&&a[x+1][y+1]==2))&&a[x-1][y-1]==0){
+	    if ((a[x-2][y-2]!=1||a[x+4][y+4]!=1)&&a[x-2][y-2]!=0&&a[x+4][y+4]!=0) return 1; 
+	  }      	  
 	  
 	  if (x<12&&y<12){
 	    //far continuous
@@ -1101,6 +1162,12 @@ int check_chance_three_diagonal1(int x,int y,int m,int a[m][m]){
 	      
 	    }
 	  }
+
+	  //discrete x-x-x,x--xx
+	  
+	  if (x<15&&y<15&&a[x+1][y+1]==a[x-3][y-3]&&((a[x-1][y-1]==0&&a[x-2][y-2]==2)||(a[x-2][y-2]==0&&a[x-1][y-1]==2))&&a[x+1][y+1]==0){
+	    if ((a[x+2][y+2]!=1||a[x-4][y-4]!=1)&&a[x+2][y+2]!=0&&a[x-4][y-4]!=0) return 1; 
+	  }	  
 	  
 	  if (x>4&&y>4){
 	    //far continuous
@@ -1136,7 +1203,11 @@ int check_threat_three_diagonal1(int x,int y,int m,int a[m][m]){
 	if (x<13&&y<13&&a[x+3][y+3]==2&&a[x+4][y+4]!=0&&a[x+4][y+4]!=1) return 1;	  
 	else if (x>2&&y>2&&a[x-2][y-2]==2&&a[x-3][y-3]!=0&&a[x-3][y-3]!=1) return 1;
 	
-      }      
+      }
+      
+      //discrete xx--x x--xx
+      
+      if (x>2&&y>2&&a[x-2][y-2]==1&&a[x-2][y-2]==a[x+2][y+2]&&((a[x-1][y-1]==1&&a[x+1][y+1]==2)||(a[x+1][y+1]==1&&a[x-1][y-1]==2))&&(a[x-3][y-3]!=0||a[x+3][y+3]!=0)&&a[x-3][y-3]!=1&&a[x+3][y+3]!=1) return 1;
       
       if (x<13){    
 	
@@ -1150,23 +1221,27 @@ int check_threat_three_diagonal1(int x,int y,int m,int a[m][m]){
 	      else if (x<12&&y<12&&a[x+4][y+4]==2&&a[x+5][y+5]!=0) return 1;
 	    }
 	  }
+	  
+	  //discrete x-x-x,x--xx
+	  
+	  if (x>1&&y>1&&a[x-1][y-1]==a[x+3][y+3]&&((a[x+1][y+1]==1&&a[x+2][y+2]==2)||(a[x+2][y+2]==1&&a[x+1][y+1]==2))&&a[x-1][y-1]==1){
+	    if ((a[x-2][y-2]!=0||a[x+4][y+4]!=0)&&a[x-2][y-2]!=1&&a[x+4][y+4]!=1) return 1; 
+	  }      	  
+	  	  
+	  if (x<12&&y<12){
+	    //far continuous
+	    if (a[x+2][y+2]==a[x+3][y+3]&&a[x+2][y+2]==a[x+4][y+4]&&a[x+2][y+2]==1){
+	      if (a[x+1][y+1]==2&&(a[x-1][y-1]!=0||a[x+5][y+5]!=0)&&a[x-1][y-1]!=1) return 1;
+	    }
+	    
+	    //discrete
+	    if (a[x+1][y+1]==a[x+4][y+4]&&((a[x+1][y+1]==a[x+2][y+2]&&a[x+3][y+3]==2)||(a[x+1][y+1]==a[x+3][y+3]&&a[x+2][y+2]==2))&&a[x+1][y+1]==1){
+	      if ((a[x-1][y-1]!=0||a[x+5][y+5]!=0)&&a[x-1][y-1]!=1) return 1;
+	    }	    
+	    	    
+	  }    
+	  
 	}
-	
-	if (x<12&&y<12){
-	  //far continuous
-	  if (a[x+2][y+2]==a[x+3][y+3]&&a[x+2][y+2]==a[x+4][y+4]&&a[x+2][y+2]==1){
-	    if (a[x+1][y+1]==2&&(a[x-1][y-1]!=0||a[x+5][y+5]!=0)&&a[x-1][y-1]!=1) return 1;
-	  }
-	  
-	  //discrete
-	  if (a[x+1][y+1]==a[x+4][y+4]&&((a[x+1][y+1]==a[x+2][y+2]&&a[x+3][y+3]==2)||(a[x+1][y+1]==a[x+3][y+3]&&a[x+2][y+2]==2))&&a[x+1][y+1]==1){
-	    if ((a[x-1][y-1]!=0||a[x+5][y+5]!=0)&&a[x-1][y-1]!=1) return 1;
-	  }	    
-	  
-	  
-	}    
-	
-	
       }
       
     }
@@ -1194,6 +1269,12 @@ int check_threat_three_diagonal1(int x,int y,int m,int a[m][m]){
 	      else if (x>4&&y>4&&a[x-4][y-4]==2&&a[x-5][y-5]!=0) return 1;
 	    }
 	  }
+
+	  //discrete x-x-x,x--xx
+	  
+	  if (x<15&&y<15&&a[x+1][y+1]==a[x-3][y-3]&&((a[x-1][y-1]==1&&a[x-2][y-2]==2)||(a[x-2][y-2]==1&&a[x-1][y-1]==2))&&a[x+1][y+1]==1){
+	    if ((a[x+2][y+2]!=0||a[x-4][y-4]!=0)&&a[x+2][y+2]!=1&&a[x-4][y-4]!=1) return 1; 
+	  }	  
 	  
 	  if (x>4&&y>4){
 	    //far continuous
@@ -1228,9 +1309,12 @@ int check_chance_three_diagonal2(int x,int y,int m,int a[m][m]){
       
       if (a[x-1][y+1]==a[x+1][y-1]&&a[x-1][y+1]==a[x+2][y-2]&&a[x-1][y+1]==0){
 	if (x<13&&y>3&&a[x+3][y-3]==2&&a[x+4][y-4]!=1&&a[x+4][y-4]!=0) return 1;	  
-	else if (x>2&&y<14&&a[x-2][y+2]==2&&a[x-3][y+3]!=1&&a[x-3][y+3]!=0) return 1;
-	
+	else if (x>2&&y<14&&a[x-2][y+2]==2&&a[x-3][y+3]!=1&&a[x-3][y+3]!=0) return 1;	
       }
+
+      //discrete xx--x x--xx
+      
+      if (x>2&&y<14&&a[x-2][y+2]==0&&a[x-2][y+2]==a[x+2][y-2]&&((a[x-1][y+1]==0&&a[x+1][y-1]==2)||(a[x+1][y-1]==0&&a[x-1][y+1]==2))&&(a[x-3][y+3]!=1||a[x+3][y-3]!=1)&&a[x-3][y+3]!=0&&a[x+3][y-3]!=0) return 1;
       
       if (x<13){
         
@@ -1245,6 +1329,12 @@ int check_chance_three_diagonal2(int x,int y,int m,int a[m][m]){
 	      
 	    }
 	  }
+
+	  //discrete x-x-x,x--xx
+	  
+	  if (x>1&&y<15&&a[x-1][y+1]==a[x+3][y-3]&&((a[x+1][y-1]==0&&a[x+2][y-2]==2)||(a[x+2][y-2]==0&&a[x+1][y-1]==2))&&a[x-1][y+1]==0){
+	    if ((a[x-2][y+2]!=1||a[x+4][y-4]!=1)&&a[x-2][y+2]!=0&&a[x+4][y-4]!=0) return 1; 
+	  }      	  
 	  
 	  if (x<12&&y>4){
 	    //far continuous
@@ -1288,6 +1378,12 @@ int check_chance_three_diagonal2(int x,int y,int m,int a[m][m]){
 	      
 	    }
 	  }
+
+	  //discrete x-x-x,x--xx
+	  
+	  if (x<15&&y>1&&a[x+1][y-1]==a[x-3][y+3]&&((a[x-1][y+1]==0&&a[x-2][y+2]==2)||(a[x-2][y+2]==0&&a[x-1][y+1]==2))&&a[x+1][y-1]==0){
+	    if ((a[x+2][y-2]!=1||a[x-4][y+4]!=1)&&a[x+2][y-2]!=0&&a[x-4][y+4]!=0) return 1; 
+	  }	  
 	  
 	  if (x>4&&y<12){
 	    //far continuous
@@ -1321,9 +1417,12 @@ int check_threat_three_diagonal2(int x,int y,int m,int a[m][m]){
       
       if (a[x-1][y+1]==a[x+1][y-1]&&a[x-1][y+1]==a[x+2][y-2]&&a[x-1][y+1]==1){
 	if (x<13&&y>3&&a[x+3][y-3]==2&&a[x+4][y-4]!=0&&a[x+4][y-4]!=1) return 1;	  
-	else if (x>2&&y<14&&a[x-2][y+2]==2&&a[x-3][y+3]!=0&&a[x-3][y+3]!=1) return 1;
-	
+	else if (x>2&&y<14&&a[x-2][y+2]==2&&a[x-3][y+3]!=0&&a[x-3][y+3]!=1) return 1;	
       }  
+
+      //discrete xx--x x--xx
+      
+      if (x>2&&y<14&&a[x-2][y+2]==1&&a[x-2][y+2]==a[x+2][y-2]&&((a[x-1][y+1]==1&&a[x+1][y-1]==2)||(a[x+1][y-1]==1&&a[x-1][y+1]==2))&&(a[x-3][y+3]!=0||a[x+3][y-3]!=0)&&a[x-3][y+3]!=1&&a[x+3][y-3]!=1) return 1;
       
       if (x<13){
         
@@ -1338,24 +1437,29 @@ int check_threat_three_diagonal2(int x,int y,int m,int a[m][m]){
 	      else if (x<12&&y>4&&a[x+4][y-4]==2&&a[x+5][y-5]!=0) return 1;
 	    }
 	  }
+
+	  //discrete x-x-x,x--xx
+	  
+	  if (x>1&&y<15&&a[x-1][y+1]==a[x+3][y-3]&&((a[x+1][y-1]==1&&a[x+2][y-2]==2)||(a[x+2][y-2]==1&&a[x+1][y-1]==2))&&a[x-1][y+1]==1){
+	    if ((a[x-2][y+2]!=0||a[x+4][y-4]!=0)&&a[x-2][y+2]!=1&&a[x+4][y-4]!=1) return 1; 
+	  }   	  
+	  
+	  if (x<12&&y>4){
+	    //far continuous
+	    if (a[x+2][y-2]==a[x+3][y-3]&&a[x+2][y-2]==a[x+4][y-4]&&a[x+2][y-2]==1){
+	      if (a[x+1][y-1]==2&&(a[x-1][y+1]!=0||a[x+5][y-5]!=0)&&a[x-1][y+1]!=1) return 1;
+	    }
+	    
+	    //discrete
+	    if (a[x+1][y-1]==a[x+4][y-4]&&((a[x+1][y-1]==a[x+2][y-2]&&a[x+3][y-3]==2)||(a[x+1][y-1]==a[x+3][y-3]&&a[x+2][y-2]==2))&&a[x+1][y-1]==1){
+	      if ((a[x-1][y+1]!=0||a[x+5][y-5]!=0)&&a[x-1][y+1]!=1) return 1;
+	    }        	  
+	    
+	  }	
 	  
 	}
 	
-	if (x<12&&y>4){
-	  //far continuous
-	  if (a[x+2][y-2]==a[x+3][y-3]&&a[x+2][y-2]==a[x+4][y-4]&&a[x+2][y-2]==1){
-	    if (a[x+1][y-1]==2&&(a[x-1][y+1]!=0||a[x+5][y-5]!=0)&&a[x-1][y+1]!=1) return 1;
-	  }
-
-	  //discrete
-	  if (a[x+1][y-1]==a[x+4][y-4]&&((a[x+1][y-1]==a[x+2][y-2]&&a[x+3][y-3]==2)||(a[x+1][y-1]==a[x+3][y-3]&&a[x+2][y-2]==2))&&a[x+1][y-1]==1){
-	    if ((a[x-1][y+1]!=0||a[x+5][y-5]!=0)&&a[x-1][y+1]!=1) return 1;
-	  }        	  
-	  
-	}	
-	
       }
-      
     }
   }
 
@@ -1381,6 +1485,13 @@ int check_threat_three_diagonal2(int x,int y,int m,int a[m][m]){
 	      else if (x>4&&y<12&&a[x-4][y+4]==2&&a[x-5][y+5]!=0) return 1;
 	    }
 	  }
+
+	  //discrete x-x-x,x--xx
+	  
+	  if (x<15&&y>1&&a[x+1][y-1]==a[x-3][y+3]&&((a[x-1][y+1]==1&&a[x-2][y+2]==2)||(a[x-2][y+2]==1&&a[x-1][y+1]==2))&&a[x+1][y-1]==1){
+	    if ((a[x+2][y-2]!=0||a[x-4][y+4]!=0)&&a[x+2][y-2]!=1&&a[x-4][y+4]!=1) return 1; 
+	  }	  
+	  
 	  
 	  //far continuous
 	  if (x>4&&y<12){
@@ -1574,14 +1685,444 @@ int check_threat_three(int x,int y,int m,int a[m][m]){
 
 int check_chance_two_vertical(int x,int y,int m,int a[m][m]){
 
-  //check surround
+  if (x>1&&x<15){
 
-  
-  
+    //discrete 2 side x-x
+    if (a[x-1][y]==a[x+1][y]&&a[x-2][y]==2&&a[x+2][y]==2&&a[x-1][y]==0){
+      if (x<13&&a[x+3][y]==2&&a[x-3][y]!=1&&a[x+4][y]!=1&&a[x-3][y]!=0&&a[x+4][y]!=0) return 1;
+      else if (x>3&&a[x-3][y]==2&&a[x+3][y]!=1&&a[x-4][y]!=1&&a[x+3][y]!=0&&a[x-4][y]!=0) return 1;
+    }
+
+    if (x<13){
+      
+      //continuous
+      if (a[x+1][y]==a[x+2][y]&&a[x-1][y]==2&&a[x+3][y]==2&&a[x+1][y]==0){
+	if (x>2&&a[x-2][y]==2&&a[x-3][y]!=1&&a[x+4][y]!=1&&a[x-3][y]!=0&&a[x+4][y]!=0) return 1;
+	else if (x<12&&a[x+4][y]==2&&a[x-2][y]!=1&&a[x+5][y]!=1&&a[x-2][y]!=0&&a[x+5][y]!=0) return 1;
+      }
+      
+      //far continuous + discrete
+      if (((a[x+2][y]==a[x+3][y]&&a[x+1][y]==2)||(a[x+1][y]==a[x+3][y]&&a[x+2][y]==2))&&a[x-1][y]==2&&a[x+4][y]==2&&a[x+3][y]==0){
+	if (x<12&&a[x-2][y]!=1&&a[x+5][y]!=1&&a[x-2][y]!=0&&a[x+5][y]!=0) return 1;
+      }
+
+      //discrete 2 side x--x
+      if (a[x-1][y]==a[x+2][y]&&a[x-2][y]==2&&a[x+1][y]==2&&a[x+3][y]==2&&a[x-1][y]==0){
+	if (x>2&&a[x-3][y]!=1&&a[x+4][y]!=1&&a[x-3][y]!=0&&a[x+4][y]!=0) return 1;
+      }
+      
+    }
+
+    if (x>3){
+      
+      //continuous
+      if (a[x-1][y]==a[x-2][y]&&a[x+1][y]==2&&a[x-3][y]==2&&a[x-1][y]==0){
+	if (x<14&&a[x+2][y]==2&&a[x+3][y]!=1&&a[x-4][y]!=1&&a[x+3][y]!=0&&a[x-4][y]!=0) return 1;
+	else if (x>4&&a[x-4][y]==2&&a[x+2][y]!=1&&a[x-5][y]!=1&&a[x+2][y]!=0&&a[x-5][y]!=0) return 1;
+      }
+      
+      //far continuous + discrete
+      if (((a[x-2][y]==a[x-3][y]&&a[x-1][y]==2)||(a[x-1][y]==a[x-3][y]&&a[x-2][y]==2))&&a[x+1][y]==2&&a[x-4][y]==2&&a[x-3][y]==0){
+	if (x>4&&a[x+2][y]!=1&&a[x-5][y]!=1&&a[x+2][y]!=0&&a[x-5][y]!=0) return 1;
+      }
+      
+      //discrete 2 side x--x
+      if (a[x+1][y]==a[x-2][y]&&a[x+2][y]==2&&a[x-1][y]==2&&a[x-3][y]==2&&a[x+1][y]==0){
+	if (x<14&&a[x+3][y]!=1&&a[x-4][y]!=1&&a[x+3][y]!=0&&a[x-4][y]!=0) return 1;
+      }
+      
+    }
+    
+  }
   
   return 0;
 }
 
+int check_threat_two_vertical(int x,int y,int m,int a[m][m]){
+
+  if (x>1&&x<15){
+
+    //discrete 2 side x-x
+    if (a[x-1][y]==a[x+1][y]&&a[x-2][y]==2&&a[x+2][y]==2&&a[x-1][y]==1){
+      if (x<13&&a[x+3][y]==2&&a[x-3][y]!=0&&a[x+4][y]!=0&&a[x-3][y]!=1&&a[x+4][y]!=1) return 1;
+      else if (x>3&&a[x-3][y]==2&&a[x+3][y]!=0&&a[x-4][y]!=0&&a[x+3][y]!=1&&a[x-4][y]!=1) return 1;
+    }
+
+    if (x<13){
+      
+      //continuous
+      if (a[x+1][y]==a[x+2][y]&&a[x-1][y]==2&&a[x+3][y]==2&&a[x+1][y]==1){
+	if (x>2&&a[x-2][y]==2&&a[x-3][y]!=0&&a[x+4][y]!=0&&a[x-3][y]!=1&&a[x+4][y]!=1) return 1;
+	else if (x<12&&a[x+4][y]==2&&a[x-2][y]!=0&&a[x+5][y]!=0&&a[x-2][y]!=1&&a[x+5][y]!=1) return 1;
+      }
+      
+      //far continuous + discrete
+      if (((a[x+2][y]==a[x+3][y]&&a[x+1][y]==2)||(a[x+1][y]==a[x+3][y]&&a[x+2][y]==2))&&a[x-1][y]==2&&a[x+4][y]==2&&a[x+3][y]==1){
+	if (x<12&&a[x-2][y]!=0&&a[x+5][y]!=0&&a[x-2][y]!=1&&a[x+5][y]!=1) return 1;
+      }
+
+      //discrete 2 side x--x
+      if (a[x-1][y]==a[x+2][y]&&a[x-2][y]==2&&a[x+1][y]==2&&a[x+3][y]==2&&a[x-1][y]==1){
+	if (x>2&&a[x-3][y]!=0&&a[x+4][y]!=0&&a[x-3][y]!=1&&a[x+4][y]!=1) return 1;
+      }
+      
+    }
+
+    if (x>3){
+      
+      //continuous
+      if (a[x-1][y]==a[x-2][y]&&a[x+1][y]==2&&a[x-3][y]==2&&a[x-1][y]==1){
+	if (x<14&&a[x+2][y]==2&&a[x+3][y]!=0&&a[x-4][y]!=0&&a[x+3][y]!=1&&a[x-4][y]!=1) return 1;
+	else if (x>4&&a[x-4][y]==2&&a[x+2][y]!=0&&a[x-5][y]!=0&&a[x+2][y]!=1&&a[x-5][y]!=1) return 1;
+      }
+      
+      //far continuous + discrete
+      if (((a[x-2][y]==a[x-3][y]&&a[x-1][y]==2)||(a[x-1][y]==a[x-3][y]&&a[x-2][y]==2))&&a[x+1][y]==2&&a[x-4][y]==2&&a[x-3][y]==1){
+	if (x>4&&a[x+2][y]!=0&&a[x-5][y]!=0&&a[x+2][y]!=1&&a[x-5][y]!=1) return 1;
+      }
+      
+      //discrete 2 side x--x
+      if (a[x+1][y]==a[x-2][y]&&a[x+2][y]==2&&a[x-1][y]==2&&a[x-3][y]==2&&a[x+1][y]==1){
+	if (x<14&&a[x+3][y]!=0&&a[x-4][y]!=0&&a[x+3][y]!=1&&a[x-4][y]!=1) return 1;
+      }
+      
+    }
+    
+  }
+  
+  return 0;
+}
+
+int check_chance_two_horizontal(int x,int y,int m,int a[m][m]){
+
+  if (y>1&&y<15){
+
+    //discrete 2 side x-x
+    if (a[x][y-1]==a[x][y+1]&&a[x][y-2]==2&&a[x][y+2]==2&&a[x][y-1]==0){
+      if (y<13&&a[x][y+3]==2&&a[x][y-3]!=1&&a[x][y+4]!=1&&a[x][y-3]!=0&&a[x][y+4]!=0) return 1;
+      else if (y>3&&a[x][y-3]==2&&a[x][y+3]!=1&&a[x][y-4]!=1&&a[x][y+3]!=0&&a[x][y-4]!=0) return 1;
+    }
+
+    if (y<13){
+      
+      //continuous
+      if (a[x][y+1]==a[x][y+2]&&a[x][y-1]==2&&a[x][y+3]==2&&a[x][y+1]==0){
+	if (y>2&&a[x][y-2]==2&&a[x][y-3]!=1&&a[x][y+4]!=1&&a[x][y-3]!=0&&a[x][y+4]!=0) return 1;
+	else if (y<12&&a[x][y+4]==2&&a[x][y-2]!=1&&a[x][y+5]!=1&&a[x][y-2]!=0&&a[x][y+5]!=0) return 1;
+      }
+      
+      //far continuous + discrete
+      if (((a[x][y+2]==a[x][y+3]&&a[x][y+1]==2)||(a[x][y+1]==a[x][y+3]&&a[x][y+2]==2))&&a[x][y-1]==2&&a[x][y+4]==2&&a[x][y+3]==0){
+	if (y<12&&a[x][y-2]!=1&&a[x][y+5]!=1&&a[x][y-2]!=0&&a[x][y+5]!=0) return 1;
+      }
+
+      //discrete 2 side x--x
+      if (a[x][y-1]==a[x][y+2]&&a[x][y-2]==2&&a[x][y+1]==2&&a[x][y+3]==2&&a[x][y-1]==0){
+	if (y>2&&a[x][y-3]!=1&&a[x][y+4]!=1&&a[x][y-3]!=0&&a[x][y+4]!=0) return 1;
+      }
+      
+    }
+
+    if (y>3){
+      
+      //continuous
+      if (a[x][y-1]==a[x][y-2]&&a[x][y+1]==2&&a[x][y-3]==2&&a[x][y-1]==0){
+	if (y<14&&a[x][y+2]==2&&a[x][y+3]!=1&&a[x][y-4]!=1&&a[x][y+3]!=0&&a[x][y-4]!=0) return 1;
+	else if (y>4&&a[x][y-4]==2&&a[x][y+2]!=1&&a[x][y-5]!=1&&a[x][y+2]!=0&&a[x][y-5]!=0) return 1;
+      }
+      
+      //far continuous + discrete
+      if (((a[x][y-2]==a[x][y-3]&&a[x][y-1]==2)||(a[x][y-1]==a[x][y-3]&&a[x][y-2]==2))&&a[x][y+1]==2&&a[x][y-4]==2&&a[x][y-3]==0){
+	if (y>4&&a[x][y+2]!=1&&a[x][y-5]!=1&&a[x][y+2]!=0&&a[x][y-5]!=0) return 1;
+      }
+      
+      //discrete 2 side x--x
+      if (a[x][y+1]==a[x][y-2]&&a[x][y+2]==2&&a[x][y-1]==2&&a[x][y-3]==2&&a[x][y+1]==0){
+	if (y<14&&a[x][y+3]!=1&&a[x][y-4]!=1&&a[x][y+3]!=0&&a[x][y-4]!=0) return 1;
+      }
+      
+    }
+    
+  }
+  
+  return 0;
+}
+
+int check_threat_two_horizontal(int x,int y,int m,int a[m][m]){
+
+  if (y>1&&y<15){
+
+    //discrete 2 side x-x
+    if (a[x][y-1]==a[x][y+1]&&a[x][y-2]==2&&a[x][y+2]==2&&a[x][y-1]==1){
+      if (y<13&&a[x][y+3]==2&&a[x][y-3]!=0&&a[x][y+4]!=0&&a[x][y-3]!=1&&a[x][y+4]!=1) return 1;
+      else if (y>3&&a[x][y-3]==2&&a[x][y+3]!=0&&a[x][y-4]!=0&&a[x][y+3]!=1&&a[x][y-4]!=1) return 1;
+    }
+
+    if (y<13){
+      
+      //continuous
+      if (a[x][y+1]==a[x][y+2]&&a[x][y-1]==2&&a[x][y+3]==2&&a[x][y+1]==1){
+	if (y>2&&a[x][y-2]==2&&a[x][y-3]!=0&&a[x][y+4]!=0&&a[x][y-3]!=1&&a[x][y+4]!=1) return 1;
+	else if (y<12&&a[x][y+4]==2&&a[x][y-2]!=0&&a[x][y+5]!=0&&a[x][y-2]!=1&&a[x][y+5]!=1) return 1;
+      }
+      
+      //far continuous + discrete
+      if (((a[x][y+2]==a[x][y+3]&&a[x][y+1]==2)||(a[x][y+1]==a[x][y+3]&&a[x][y+2]==2))&&a[x][y-1]==2&&a[x][y+4]==2&&a[x][y+3]==1){
+	if (y<12&&a[x][y-2]!=0&&a[x][y+5]!=0&&a[x][y-2]!=1&&a[x][y+5]!=1) return 1;
+      }
+
+      //discrete 2 side x--x
+      if (a[x][y-1]==a[x][y+2]&&a[x][y-2]==2&&a[x][y+1]==2&&a[x][y+3]==2&&a[x][y-1]==1){
+	if (y>2&&a[x][y-3]!=0&&a[x][y+4]!=0&&a[x][y-3]!=1&&a[x][y+4]!=1) return 1;
+      }
+      
+    }
+
+    if (y>3){
+      
+      //continuous
+      if (a[x][y-1]==a[x][y-2]&&a[x][y+1]==2&&a[x][y-3]==2&&a[x][y-1]==1){
+	if (y<14&&a[x][y+2]==2&&a[x][y+3]!=0&&a[x][y-4]!=0&&a[x][y+3]!=1&&a[x][y-4]!=1) return 1;
+	else if (y>4&&a[x][y-4]==2&&a[x][y+2]!=0&&a[x][y-5]!=0&&a[x][y+2]!=1&&a[x][y-5]!=1) return 1;
+      }
+      
+      //far continuous + discrete
+      if (((a[x][y-2]==a[x][y-3]&&a[x][y-1]==2)||(a[x][y-1]==a[x][y-3]&&a[x][y-2]==2))&&a[x][y+1]==2&&a[x][y-4]==2&&a[x][y-3]==1){
+	if (y>4&&a[x][y+2]!=0&&a[x][y-5]!=0&&a[x][y+2]!=1&&a[x][y-5]!=1) return 1;
+      }
+      
+      //discrete 2 side x--x
+      if (a[x][y+1]==a[x][y-2]&&a[x][y+2]==2&&a[x][y-1]==2&&a[x][y-3]==2&&a[x][y+1]==1){
+	if (y<14&&a[x][y+3]!=0&&a[x][y-4]!=0&&a[x][y+3]!=1&&a[x][y-4]!=1) return 1;
+      }
+      
+    }
+    
+  }
+  
+  return 0;
+}
+
+int check_chance_two_diagonal1(int x,int y,int m,int a[m][m]){
+
+  if (x>1&&x<15&&y>1&&y<15){
+
+    //discrete 2 side x-x
+    if (a[x-1][y-1]==a[x+1][y+1]&&a[x-2][y-2]==2&&a[x+2][y+2]==2&&a[x-1][y-1]==0){
+      if (x<13&&y<13&&a[x+3][y+3]==2&&a[x-3][y-3]!=1&&a[x+4][y+4]!=1&&a[x-3][y-3]!=0&&a[x+4][y+4]!=0) return 1;
+      else if (x>3&&y>3&&a[x-3][y-3]==2&&a[x+3][y+3]!=1&&a[x-4][y-4]!=1&&a[x+3][y+3]!=0&&a[x-4][y-4]!=0) return 1;
+    }
+
+    if (x<13&&y<13){
+      
+      //continuous
+      if (a[x+1][y+1]==a[x+2][y+2]&&a[x-1][y-1]==2&&a[x+3][y+3]==2&&a[x+1][y+1]==0){
+	if (x>2&&y>2&&a[x-2][y-2]==2&&a[x-3][y-3]!=1&&a[x+4][y+4]!=1&&a[x-3][y-3]!=0&&a[x+4][y+4]!=0) return 1;
+	else if (x<12&&y<12&&a[x+4][y+4]==2&&a[x-2][y-2]!=1&&a[x+5][y+5]!=1&&a[x-2][y-2]!=0&&a[x+5][y+5]!=0) return 1;
+      }
+      
+      //far continuous + discrete
+      if (((a[x+2][y+2]==a[x+3][y+3]&&a[x+1][y+1]==2)||(a[x+1][y+1]==a[x+3][y+3]&&a[x+2][y+2]==2))&&a[x-1][y-1]==2&&a[x+4][y+4]==2&&a[x+3][y+3]==0){
+	if (x<12&&y<12&&a[x-2][y-2]!=1&&a[x+5][y+5]!=1&&a[x-2][y-2]!=0&&a[x+5][y+5]!=0) return 1;
+      }
+
+      //discrete 2 side x--x
+      if (a[x-1][y-1]==a[x+2][y+2]&&a[x-2][y-2]==2&&a[x+1][y+1]==2&&a[x+3][y+3]==2&&a[x-1][y-1]==0){
+	if (x>2&&y>2&&a[x-3][y-3]!=1&&a[x+4][y+4]!=1&&a[x-3][y-3]!=0&&a[x+4][y+4]!=0) return 1;
+      }
+      
+    }
+
+    if (x>3&&y>3){
+      
+      //continuous
+      if (a[x-1][y-1]==a[x-2][y-2]&&a[x+1][y+1]==2&&a[x-3][y-3]==2&&a[x-1][y-1]==0){
+	if (x<14&&y<14&&a[x+2][y+2]==2&&a[x+3][y+3]!=1&&a[x-4][y-4]!=1&&a[x+3][y+3]!=0&&a[x-4][y-4]!=0) return 1;
+	else if (x>4&&y>4&&a[x-4][y-4]==2&&a[x+2][y+2]!=1&&a[x-5][y-5]!=1&&a[x+2][y+2]!=0&&a[x-5][y-5]!=0) return 1;
+      }
+      
+      //far continuous + discrete
+      if (((a[x-2][y-2]==a[x-3][y-3]&&a[x-1][y-1]==2)||(a[x-1][y-1]==a[x-3][y-3]&&a[x-2][y-2]==2))&&a[x+1][y+1]==2&&a[x-4][y-4]==2&&a[x-3][y-3]==0){
+	if (x>4&&y>4&&a[x+2][y+2]!=1&&a[x-5][y-5]!=1&&a[x+2][y+2]!=0&&a[x-5][y-5]!=0) return 1;
+      }
+      
+      //discrete 2 side x--x
+      if (a[x+1][y+1]==a[x-2][y-2]&&a[x+2][y+2]==2&&a[x-1][y-1]==2&&a[x-3][y-3]==2&&a[x+1][y+1]==0){
+	if (x<14&&y<14&&a[x+3][y+3]!=1&&a[x-4][y-4]!=1&&a[x+3][y+3]!=0&&a[x-4][y-4]!=0) return 1;
+      }
+      
+    }
+    
+  }
+  
+  return 0;
+}
+
+int check_threat_two_diagonal1(int x,int y,int m,int a[m][m]){
+
+  if (x>1&&x<15&&y>1&&y<15){
+
+    //discrete 2 side x-x
+    if (a[x-1][y-1]==a[x+1][y+1]&&a[x-2][y-2]==2&&a[x+2][y+2]==2&&a[x-1][y-1]==1){
+      if (x<13&&y<13&&a[x+3][y+3]==2&&a[x-3][y-3]!=0&&a[x+4][y+4]!=0&&a[x-3][y-3]!=1&&a[x+4][y+4]!=1) return 1;
+      else if (x>3&&y>3&&a[x-3][y-3]==2&&a[x+3][y+3]!=0&&a[x-4][y-4]!=0&&a[x+3][y+3]!=1&&a[x-4][y-4]!=1) return 1;
+    }
+
+    if (x<13&&y<13){
+      
+      //continuous
+      if (a[x+1][y+1]==a[x+2][y+2]&&a[x-1][y-1]==2&&a[x+3][y+3]==2&&a[x+1][y+1]==1){
+	if (x>2&&y>2&&a[x-2][y-2]==2&&a[x-3][y-3]!=0&&a[x+4][y+4]!=0&&a[x-3][y-3]!=1&&a[x+4][y+4]!=1) return 1;
+	else if (x<12&&y<12&&a[x+4][y+4]==2&&a[x-2][y-2]!=0&&a[x+5][y+5]!=0&&a[x-2][y-2]!=1&&a[x+5][y+5]!=1) return 1;
+      }
+      
+      //far continuous + discrete
+      if (((a[x+2][y+2]==a[x+3][y+3]&&a[x+1][y+1]==2)||(a[x+1][y+1]==a[x+3][y+3]&&a[x+2][y+2]==2))&&a[x-1][y-1]==2&&a[x+4][y+4]==2&&a[x+3][y+3]==1){
+	if (x<12&&y<12&&a[x-2][y-2]!=0&&a[x+5][y+5]!=0&&a[x-2][y-2]!=1&&a[x+5][y+5]!=1) return 1;
+      }
+
+      //discrete 2 side x--x
+      if (a[x-1][y-1]==a[x+2][y+2]&&a[x-2][y-2]==2&&a[x+1][y+1]==2&&a[x+3][y+3]==2&&a[x-1][y-1]==1){
+	if (x>2&&y>2&&a[x-3][y-3]!=0&&a[x+4][y+4]!=0&&a[x-3][y-3]!=1&&a[x+4][y+4]!=1) return 1;
+      }
+      
+    }
+
+    if (x>3&&y>3){
+      
+      //continuous
+      if (a[x-1][y-1]==a[x-2][y-2]&&a[x+1][y+1]==2&&a[x-3][y-3]==2&&a[x-1][y-1]==1){
+	if (x<14&&y<14&&a[x+2][y+2]==2&&a[x+3][y+3]!=0&&a[x-4][y-4]!=0&&a[x+3][y+3]!=1&&a[x-4][y-4]!=1) return 1;
+	else if (x>4&&y>4&&a[x-4][y-4]==2&&a[x+2][y+2]!=0&&a[x-5][y-5]!=0&&a[x+2][y+2]!=1&&a[x-5][y-5]!=1) return 1;
+      }
+      
+      //far continuous + discrete
+      if (((a[x-2][y-2]==a[x-3][y-3]&&a[x-1][y-1]==2)||(a[x-1][y-1]==a[x-3][y-3]&&a[x-2][y-2]==2))&&a[x+1][y+1]==2&&a[x-4][y-4]==2&&a[x-3][y-3]==1){
+	if (x>4&&y>4&&a[x+2][y+2]!=0&&a[x-5][y-5]!=0&&a[x+2][y+2]!=1&&a[x-5][y-5]!=1) return 1;
+      }
+      
+      //discrete 2 side x--x
+      if (a[x+1][y+1]==a[x-2][y-2]&&a[x+2][y+2]==2&&a[x-1][y-1]==2&&a[x-3][y-3]==2&&a[x+1][y+1]==1){
+	if (x<14&&y<14&&a[x+3][y+3]!=0&&a[x-4][y-4]!=0&&a[x+3][y+3]!=1&&a[x-4][y-4]!=1) return 1;
+      }
+      
+    }
+    
+  }
+  
+  return 0;
+}
+
+int check_chance_two_diagonal2(int x,int y,int m,int a[m][m]){
+
+  if (x>1&&x<15&&y>1&&y<15){
+
+    //discrete 2 side x-x
+    if (a[x+1][y-1]==a[x-1][y+1]&&a[x+2][y-2]==2&&a[x-2][y+2]==2&&a[x+1][y-1]==0){
+      if (x>3&&y<13&&a[x-3][y+3]==2&&a[x+3][y-3]!=1&&a[x-4][y+4]!=1&&a[x+3][y-3]!=0&&a[x-4][y+4]!=0) return 1;
+      else if (x<13&&y>3&&a[x+3][y-3]==2&&a[x-3][y+3]!=1&&a[x+4][y-4]!=1&&a[x-3][y+3]!=0&&a[x+4][y-4]!=0) return 1;
+    }
+
+    if (x>3&&y<13){
+      
+      //continuous
+      if (a[x-1][y+1]==a[x-2][y+2]&&a[x+1][y-1]==2&&a[x-3][y+3]==2&&a[x-1][y+1]==0){
+	if (x<14&&y>2&&a[x+2][y-2]==2&&a[x+3][y-3]!=1&&a[x-4][y+4]!=1&&a[x+3][y-3]!=0&&a[x-4][y+4]!=0) return 1;
+	else if (x>4&&y<12&&a[x-4][y+4]==2&&a[x+2][y-2]!=1&&a[x-5][y+5]!=1&&a[x+2][y-2]!=0&&a[x-5][y+5]!=0) return 1;
+      }
+      
+      //far continuous + discrete
+      if (((a[x-2][y+2]==a[x-3][y+3]&&a[x-1][y+1]==2)||(a[x-1][y+1]==a[x-3][y+3]&&a[x-2][y+2]==2))&&a[x+1][y-1]==2&&a[x-4][y+4]==2&&a[x-3][y+3]==0){
+	if (x>4&&y<12&&a[x+2][y-2]!=1&&a[x-5][y+5]!=1&&a[x+2][y-2]!=0&&a[x-5][y+5]!=0) return 1;
+      }
+
+      //discrete 2 side x--x
+      if (a[x+1][y-1]==a[x-2][y+2]&&a[x+2][y-2]==2&&a[x-1][y+1]==2&&a[x-3][y+3]==2&&a[x+1][y-1]==0){
+	if (x<14&&y>2&&a[x+3][y-3]!=1&&a[x-4][y+4]!=1&&a[x+3][y-3]!=0&&a[x-4][y+4]!=0) return 1;
+      }
+      
+    }
+
+    if (x<13&&y>3){
+      
+      //continuous
+      if (a[x+1][y-1]==a[x+2][y-2]&&a[x-1][y+1]==2&&a[x+3][y-3]==2&&a[x+1][y-1]==0){
+	if (x>2&&y<14&&a[x-2][y+2]==2&&a[x-3][y+3]!=1&&a[x+4][y-4]!=1&&a[x-3][y+3]!=0&&a[x+4][y-4]!=0) return 1;
+	else if (x<12&&y>4&&a[x+4][y-4]==2&&a[x-2][y+2]!=1&&a[x+5][y-5]!=1&&a[x-2][y+2]!=0&&a[x+5][y-5]!=0) return 1;
+      }
+      
+      //far continuous + discrete
+      if (((a[x+2][y-2]==a[x+3][y-3]&&a[x+1][y-1]==2)||(a[x+1][y-1]==a[x+3][y-3]&&a[x+2][y-2]==2))&&a[x-1][y+1]==2&&a[x+4][y-4]==2&&a[x+3][y-3]==0){
+	if (x<12&&y>4&&a[x-2][y+2]!=1&&a[x+5][y-5]!=1&&a[x-2][y+2]!=0&&a[x+5][y-5]!=0) return 1;
+      }
+      
+      //discrete 2 side x--x
+      if (a[x-1][y+1]==a[x+2][y-2]&&a[x-2][y+2]==2&&a[x+1][y-1]==2&&a[x+3][y-3]==2&&a[x-1][y+1]==0){
+	if (x>2&&y<14&&a[x-3][y+3]!=1&&a[x+4][y-4]!=1&&a[x-3][y+3]!=0&&a[x+4][y-4]!=0) return 1;
+      }
+      
+    }
+    
+  }
+  
+  return 0;
+}
+
+int check_threat_two_diagonal2(int x,int y,int m,int a[m][m]){
+
+  if (x>1&&x<15&&y>1&&y<15){
+
+    //discrete 2 side x-x
+    if (a[x+1][y-1]==a[x-1][y+1]&&a[x+2][y-2]==2&&a[x-2][y+2]==2&&a[x+1][y-1]==1){
+      if (x>3&&y<13&&a[x-3][y+3]==2&&a[x+3][y-3]!=0&&a[x-4][y+4]!=0&&a[x+3][y-3]!=1&&a[x-4][y+4]!=1) return 1;
+      else if (x<13&&y>3&&a[x+3][y-3]==2&&a[x-3][y+3]!=0&&a[x+4][y-4]!=0&&a[x-3][y+3]!=1&&a[x+4][y-4]!=1) return 1;
+    }
+
+    if (x>3&&y<13){
+      
+      //continuous
+      if (a[x-1][y+1]==a[x-2][y+2]&&a[x+1][y-1]==2&&a[x-3][y+3]==2&&a[x-1][y+1]==1){
+	if (x<14&&y>2&&a[x+2][y-2]==2&&a[x+3][y-3]!=0&&a[x-4][y+4]!=0&&a[x+3][y-3]!=1&&a[x-4][y+4]!=1) return 1;
+	else if (x>4&&y<12&&a[x-4][y+4]==2&&a[x+2][y-2]!=0&&a[x-5][y+5]!=0&&a[x+2][y-2]!=1&&a[x-5][y+5]!=1) return 1;
+      }
+      
+      //far continuous + discrete
+      if (((a[x-2][y+2]==a[x-3][y+3]&&a[x-1][y+1]==2)||(a[x-1][y+1]==a[x-3][y+3]&&a[x-2][y+2]==2))&&a[x+1][y-1]==2&&a[x-4][y+4]==2&&a[x-3][y+3]==1){
+	if (x>4&&y<12&&a[x+2][y-2]!=0&&a[x-5][y+5]!=0&&a[x+2][y-2]!=1&&a[x-5][y+5]!=1) return 1;
+      }
+
+      //discrete 2 side x--x
+      if (a[x+1][y-1]==a[x-2][y+2]&&a[x+2][y-2]==2&&a[x-1][y+1]==2&&a[x-3][y+3]==2&&a[x+1][y-1]==1){
+	if (x<14&&y>2&&a[x+3][y-3]!=0&&a[x-4][y+4]!=0&&a[x+3][y-3]!=1&&a[x-4][y+4]!=1) return 1;
+      }
+      
+    }
+
+    if (x<13&&y>3){
+      
+      //continuous
+      if (a[x+1][y-1]==a[x+2][y-2]&&a[x-1][y+1]==2&&a[x+3][y-3]==2&&a[x+1][y-1]==1){
+	if (x>2&&y<14&&a[x-2][y+2]==2&&a[x-3][y+3]!=0&&a[x+4][y-4]!=0&&a[x-3][y+3]!=1&&a[x+4][y-4]!=1) return 1;
+	else if (x<12&&y>4&&a[x+4][y-4]==2&&a[x-2][y+2]!=0&&a[x+5][y-5]!=0&&a[x-2][y+2]!=1&&a[x+5][y-5]!=1) return 1;
+      }
+      
+      //far continuous + discrete
+      if (((a[x+2][y-2]==a[x+3][y-3]&&a[x+1][y-1]==2)||(a[x+1][y-1]==a[x+3][y-3]&&a[x+2][y-2]==2))&&a[x-1][y+1]==2&&a[x+4][y-4]==2&&a[x+3][y-3]==1){
+	if (x<12&&y>4&&a[x-2][y+2]!=0&&a[x+5][y-5]!=0&&a[x-2][y+2]!=1&&a[x+5][y-5]!=1) return 1;
+      }
+      
+      //discrete 2 side x--x
+      if (a[x-1][y+1]==a[x+2][y-2]&&a[x-2][y+2]==2&&a[x+1][y-1]==2&&a[x+3][y-3]==2&&a[x-1][y+1]==1){
+	if (x>2&&y<14&&a[x-3][y+3]!=0&&a[x+4][y-4]!=0&&a[x-3][y+3]!=1&&a[x+4][y-4]!=1) return 1;
+      }
+      
+    }
+    
+  }
+  
+  return 0;
+}
+/*
 int check_chance_double_two(int x,int y,int m,int a[m][m]){
 
   //check surround
@@ -1790,3 +2331,5 @@ int check_threat_double_two(int x,int y,int m,int a[m][m]){
 
   return 0;
 }
+
+*/
