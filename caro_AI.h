@@ -93,6 +93,110 @@ int check_threat_double_two(int x,int y,int m,int a[m][m]){
   return 0;
 }
 
+int check_chance_three_one(int x,int y,int m,int a[m][m]){
+  if (
+    (check_chance_three_vertical(x,y,m,a)==1&&check_chance_one_horizontal(x,y,m,a)==1)||
+    (check_chance_three_vertical(x,y,m,a)==1&&check_chance_one_diagonal1(x,y,m,a)==1)||
+    (check_chance_three_vertical(x,y,m,a)==1&&check_chance_one_diagonal2(x,y,m,a)==1)||
+    (check_chance_three_horizontal(x,y,m,a)==1&&check_chance_one_vertical(x,y,m,a)==1)||
+    (check_chance_three_horizontal(x,y,m,a)==1&&check_chance_one_diagonal1(x,y,m,a)==1)||
+    (check_chance_three_horizontal(x,y,m,a)==1&&check_chance_one_diagonal2(x,y,m,a)==1)||
+    (check_chance_three_diagonal1(x,y,m,a)==1&&check_chance_one_vertical(x,y,m,a)==1)||
+    (check_chance_three_diagonal1(x,y,m,a)==1&&check_chance_one_horizontal(x,y,m,a)==1)||
+    (check_chance_three_diagonal1(x,y,m,a)==1&&check_chance_one_diagonal2(x,y,m,a)==1)||
+    (check_chance_three_diagonal2(x,y,m,a)==1&&check_chance_one_vertical(x,y,m,a)==1)||
+    (check_chance_three_diagonal2(x,y,m,a)==1&&check_chance_one_horizontal(x,y,m,a)==1)||
+    (check_chance_three_diagonal2(x,y,m,a)==1&&check_chance_one_diagonal1(x,y,m,a)==1)    
+  ) return 1;
+
+  return 0;
+}
+
+int check_threat_three_one(int x,int y,int m,int a[m][m]){
+  if (
+    (check_threat_three_vertical(x,y,m,a)==1&&check_threat_one_horizontal(x,y,m,a)==1)||
+    (check_threat_three_vertical(x,y,m,a)==1&&check_threat_one_diagonal1(x,y,m,a)==1)||
+    (check_threat_three_vertical(x,y,m,a)==1&&check_threat_one_diagonal2(x,y,m,a)==1)||
+    (check_threat_three_horizontal(x,y,m,a)==1&&check_threat_one_vertical(x,y,m,a)==1)||
+    (check_threat_three_horizontal(x,y,m,a)==1&&check_threat_one_diagonal1(x,y,m,a)==1)||
+    (check_threat_three_horizontal(x,y,m,a)==1&&check_threat_one_diagonal2(x,y,m,a)==1)||
+    (check_threat_three_diagonal1(x,y,m,a)==1&&check_threat_one_vertical(x,y,m,a)==1)||
+    (check_threat_three_diagonal1(x,y,m,a)==1&&check_threat_one_horizontal(x,y,m,a)==1)||
+    (check_threat_three_diagonal1(x,y,m,a)==1&&check_threat_one_diagonal2(x,y,m,a)==1)||
+    (check_threat_three_diagonal2(x,y,m,a)==1&&check_threat_one_vertical(x,y,m,a)==1)||
+    (check_threat_three_diagonal2(x,y,m,a)==1&&check_threat_one_horizontal(x,y,m,a)==1)||
+    (check_threat_three_diagonal2(x,y,m,a)==1&&check_threat_one_diagonal1(x,y,m,a)==1)    
+  ) return 1;
+
+  return 0;
+}
+
+int check_chance_two_one(int x,int y,int m,int a[m][m]){
+  if (
+    (check_chance_one_vertical(x,y,m,a)==1&&check_chance_two_horizontal(x,y,m,a)==1)||
+    (check_chance_one_vertical(x,y,m,a)==1&&check_chance_two_diagonal1(x,y,m,a)==1)||
+    (check_chance_one_vertical(x,y,m,a)==1&&check_chance_two_diagonal2(x,y,m,a)==1)||
+    (check_chance_one_horizontal(x,y,m,a)==1&&check_chance_two_vertical(x,y,m,a)==1)||
+    (check_chance_one_horizontal(x,y,m,a)==1&&check_chance_two_diagonal1(x,y,m,a)==1)||
+    (check_chance_one_horizontal(x,y,m,a)==1&&check_chance_two_diagonal2(x,y,m,a)==1)||
+    (check_chance_one_diagonal1(x,y,m,a)==1&&check_chance_two_vertical(x,y,m,a)==1)||
+    (check_chance_one_diagonal1(x,y,m,a)==1&&check_chance_two_horizontal(x,y,m,a)==1)||
+    (check_chance_one_diagonal1(x,y,m,a)==1&&check_chance_two_diagonal2(x,y,m,a)==1)||
+    (check_chance_one_diagonal2(x,y,m,a)==1&&check_chance_two_vertical(x,y,m,a)==1)||
+    (check_chance_one_diagonal2(x,y,m,a)==1&&check_chance_two_horizontal(x,y,m,a)==1)||
+    (check_chance_one_diagonal2(x,y,m,a)==1&&check_chance_two_diagonal1(x,y,m,a)==1)    
+  ) return 1;
+
+  return 0;
+}
+
+int check_threat_two_one(int x,int y,int m,int a[m][m]){
+  if (
+    (check_threat_one_vertical(x,y,m,a)==1&&check_threat_two_horizontal(x,y,m,a)==1)||
+    (check_threat_one_vertical(x,y,m,a)==1&&check_threat_two_diagonal1(x,y,m,a)==1)||
+    (check_threat_one_vertical(x,y,m,a)==1&&check_threat_two_diagonal2(x,y,m,a)==1)||
+    (check_threat_one_horizontal(x,y,m,a)==1&&check_threat_two_vertical(x,y,m,a)==1)||
+    (check_threat_one_horizontal(x,y,m,a)==1&&check_threat_two_diagonal1(x,y,m,a)==1)||
+    (check_threat_one_horizontal(x,y,m,a)==1&&check_threat_two_diagonal2(x,y,m,a)==1)||
+    (check_threat_one_diagonal1(x,y,m,a)==1&&check_threat_two_vertical(x,y,m,a)==1)||
+    (check_threat_one_diagonal1(x,y,m,a)==1&&check_threat_two_horizontal(x,y,m,a)==1)||
+    (check_threat_one_diagonal1(x,y,m,a)==1&&check_threat_two_diagonal2(x,y,m,a)==1)||
+    (check_threat_one_diagonal2(x,y,m,a)==1&&check_threat_two_vertical(x,y,m,a)==1)||
+    (check_threat_one_diagonal2(x,y,m,a)==1&&check_threat_two_horizontal(x,y,m,a)==1)||
+    (check_threat_one_diagonal2(x,y,m,a)==1&&check_threat_two_diagonal1(x,y,m,a)==1)    
+  ) return 1;
+
+  return 0;
+}
+
+int check_chance_double_one(int x,int y,int m,int a[m][m]){
+
+  if (
+    (check_chance_one_vertical(x,y,m,a)==1&&check_chance_one_horizontal(x,y,m,a)==1)||
+    (check_chance_one_vertical(x,y,m,a)==1&&check_chance_one_diagonal1(x,y,m,a)==1)||
+    (check_chance_one_vertical(x,y,m,a)==1&&check_chance_one_diagonal2(x,y,m,a)==1)||
+    (check_chance_one_horizontal(x,y,m,a)==1&&check_chance_one_diagonal1(x,y,m,a)==1)||
+    (check_chance_one_horizontal(x,y,m,a)==1&&check_chance_one_diagonal2(x,y,m,a)==1)||
+    (check_chance_one_diagonal1(x,y,m,a)==1&&check_chance_one_diagonal2(x,y,m,a)==1)	    
+  ) return 1;
+  
+  return 0;
+}
+
+int check_threat_double_one(int x,int y,int m,int a[m][m]){
+
+  if (
+    (check_threat_one_vertical(x,y,m,a)==1&&check_threat_one_horizontal(x,y,m,a)==1)||
+    (check_threat_one_vertical(x,y,m,a)==1&&check_threat_one_diagonal1(x,y,m,a)==1)||
+    (check_threat_one_vertical(x,y,m,a)==1&&check_threat_one_diagonal2(x,y,m,a)==1)||
+    (check_threat_one_horizontal(x,y,m,a)==1&&check_threat_one_diagonal1(x,y,m,a)==1)||
+    (check_threat_one_horizontal(x,y,m,a)==1&&check_threat_one_diagonal2(x,y,m,a)==1)||
+    (check_threat_one_diagonal1(x,y,m,a)==1&&check_threat_one_diagonal2(x,y,m,a)==1)	    
+  ) return 1;
+  
+  return 0;
+}
+
 void caro_brain(int m,int a[m][m]){
   int i,j;
   time_t t;
@@ -125,11 +229,11 @@ void caro_brain(int m,int a[m][m]){
       for (j=1;j<16;j++){
 	if (a[i][j]==1){
 	  do{
-	    int random_number_x=rand()%5;
-	    int random_number_y=rand()%5;
+	    int random_number_x=rand()%3;
+	    int random_number_y=rand()%3;
 	    
-	    choose_x=i-3+random_number_x;
-	    choose_y=j-3+random_number_y;
+	    choose_x=i-2+random_number_x;
+	    choose_y=j-2+random_number_y;
 	  } while (choose_x<0||choose_x>14||choose_y<0||choose_y>14);
 	  return;
 	}
@@ -161,8 +265,27 @@ void caro_brain(int m,int a[m][m]){
 	}
       }
     }
+
+    //check threat far four
+
+    for (i=1;i<m-1;i++){
+      for (j=1;j<m-1;j++){
+	if (a[i][j]==2){
+	  if (
+	    (check_threat_far_four(i,j,17,a)==1&&check_chance_double_three(i,j,17,a)==1)||
+	    (check_threat_far_four(i,j,17,a)==1&&check_chance_three_two(i,j,17,a)==1)||	    
+	    (check_threat_far_four(i,j,17,a)==1&&check_threat_double_three(i,j,17,a)==1)||
+	    (check_threat_far_four(i,j,17,a)==1&&check_threat_three_two(i,j,17,a)==1)
+	  ){
+	    choose_x=i-1;
+	    choose_y=j-1;
+	    return;
+	  }
+	}
+      }
+    }
     
-    
+    //check threat four
     for (i=1;i<m-1;i++){
       for (j=1;j<m-1;j++){
 	if (a[i][j]==2){
@@ -245,9 +368,32 @@ void caro_brain(int m,int a[m][m]){
       }
     }
 
-    
 
     //check threat three
+
+    for (i=1;i<m-1;i++){
+      for (j=1;j<m-1;j++){
+	if (a[i][j]==2){
+	  if (check_chance_double_two(i,j,17,a)==1&&check_threat_far_three(i,j,17,a)==1){
+	    choose_x=i-1;
+	    choose_y=j-1;
+	    return;
+	  }
+	}
+      }
+    }
+
+    for (i=1;i<m-1;i++){
+      for (j=1;j<m-1;j++){
+	if (a[i][j]==2){
+	  if (check_threat_double_two(i,j,17,a)==1&&check_threat_far_three(i,j,17,a)==1){
+	    choose_x=i-1;
+	    choose_y=j-1;
+	    return;
+	  }
+	}
+      }
+    }
     
     for (i=1;i<m-1;i++){
       for (j=1;j<m-1;j++){
@@ -263,8 +409,8 @@ void caro_brain(int m,int a[m][m]){
     
     //check chance double two
 
-    for (i=3;i<m-3;i++){
-      for (j=2;j<m-3;j++){
+    for (i=1;i<m-1;i++){
+      for (j=1;j<m-1;j++){
 	if (a[i][j]==2){
 	  if (check_chance_double_two(i,j,17,a)==1){
 	    choose_x=i-1;
@@ -277,10 +423,132 @@ void caro_brain(int m,int a[m][m]){
 
     //check threat double two
     
-    for (i=3;i<m-3;i++){
-      for (j=3;j<m-1;j++){
+    for (i=1;i<m-1;i++){
+      for (j=1;j<m-1;j++){
 	if (a[i][j]==2){
 	  if (check_threat_double_two(i,j,17,a)==1){
+	    choose_x=i-1;
+	    choose_y=j-1;
+	    return;
+	  }
+	}
+      }
+    }
+
+    //check chance three one
+    
+    for (i=1;i<m-1;i++){
+      for (j=1;j<m-1;j++){
+	if (a[i][j]==2){
+	  if (check_chance_three_one(i,j,17,a)==1){
+	    choose_x=i-1;
+	    choose_y=j-1;
+	    return;
+	  }
+	}
+      }
+    }
+    
+    //check threat three two
+    
+    for (i=1;i<m-1;i++){
+      for (j=1;j<m-1;j++){
+	if (a[i][j]==2){
+	  if (check_threat_three_one(i,j,17,a)==1){
+	    choose_x=i-1;
+	    choose_y=j-1;
+	    return;
+	  }
+	}
+      }
+    }
+
+    //check chance two one
+    
+    for (i=1;i<m-1;i++){
+      for (j=1;j<m-1;j++){
+	if (a[i][j]==2){
+	  if (check_chance_two_one(i,j,17,a)==1){
+	    choose_x=i-1;
+	    choose_y=j-1;
+	    return;
+	  }
+	}
+      }
+    }
+    
+    //check threat two one
+    
+    for (i=1;i<m-1;i++){
+      for (j=1;j<m-1;j++){
+	if (a[i][j]==2){
+	  if (check_threat_two_one(i,j,17,a)==1){
+	    choose_x=i-1;
+	    choose_y=j-1;
+	    return;
+	  }
+	}
+      }
+    }
+
+    //check chance double one
+    
+    for (i=1;i<m-1;i++){
+      for (j=1;j<m-1;j++){
+	if (a[i][j]==2){
+	  if (check_chance_double_one(i,j,17,a)==1){
+	    choose_x=i-1;
+	    choose_y=j-1;
+	    return;
+	  }
+	}
+      }
+    }
+    
+    //check threat double one
+    
+    for (i=1;i<m-1;i++){
+      for (j=1;j<m-1;j++){
+	if (a[i][j]==2){
+	  if (check_threat_double_one(i,j,17,a)==1){
+	    choose_x=i-1;
+	    choose_y=j-1;
+	    return;
+	  }
+	}
+      }
+    }
+
+    //check chance one
+    
+    for (i=1;i<m-1;i++){
+      for (j=1;j<m-1;j++){
+	if (a[i][j]==2){
+	  if (
+	    check_chance_one_vertical(i,j,17,a)==1||
+	    check_chance_one_horizontal(i,j,17,a)==1||
+	    check_chance_one_diagonal1(i,j,17,a)==1||
+	    check_chance_one_diagonal2(i,j,17,a)==1
+	  ){
+	    choose_x=i-1;
+	    choose_y=j-1;
+	    return;
+	  }
+	}
+      }
+    }
+    
+    //check threat one
+    
+    for (i=1;i<m-1;i++){
+      for (j=1;j<m-1;j++){
+	if (a[i][j]==2){
+	  if (
+	    check_threat_one_vertical(i,j,17,a)==1||
+	    check_threat_one_horizontal(i,j,17,a)==1||
+	    check_threat_one_diagonal1(i,j,17,a)==1||
+	    check_threat_one_diagonal2(i,j,17,a)==1
+	  ){
 	    choose_x=i-1;
 	    choose_y=j-1;
 	    return;
