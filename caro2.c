@@ -179,7 +179,7 @@ bool check()
     }
   }
 
-  if (check_result(17,17,a)==1){
+  if (check_result(17,a)==1){
     show_message(1);
     user1++;
     state=1;
@@ -188,7 +188,7 @@ bool check()
     gtk_label_set_text(GTK_LABEL(stat),text);
     return 0;
   }
-  if (check_result(17,17,a)==2){
+  if (check_result(17,a)==2){
     show_message(2);
     user2++;
     state=1;

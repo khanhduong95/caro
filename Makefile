@@ -1,32 +1,35 @@
-NAME=caro
-NAME1=gcaro
-NAME2=gcaro2
-CFLAGS=-g -Wall -o $(NAME)
-CFLAGS1=-g -Wall -o $(NAME1)
-CFLAGS2=-g -Wall -o $(NAME2)
+SRCS := caro_check.c caro_AI.c
+OBJS := ${SRCS:.c=.o}
+CFLAGS=-g -Wall -c
 GTKFLAGS=-export-dynamic `pkg-config --cflags --libs gtk+-3.0`
-SRCS=caro.c
-SRCS1=gcaro.c
-SRCS2=gcaro2.c
 CC=gcc
 
 # top-level rule to create the program.
-all: caro gcaro gcaro2
+all: caro caro2
 
 # compiling the source file.
-caro: $(SRCS)
-	$(CC) $(CFLAGS) $(SRCS)	
-	
-gcaro: $(SRCS1)
-	$(CC) $(CFLAGS1) $(SRCS1) $(GTKFLAGS)	
+caro: caro.o $(OBJS)
+	$(CC) -g -o caro caro.o $(OBJS) $(GTKFLAGS)
 
-gcaro2: $(SRCS2)
-	$(CC) $(CFLAGS2) $(SRCS2) $(GTKFLAGS)
+caro2: caro2.o $(OBJS)
+	$(CC) -g -o caro2 caro2.o $(OBJS) $(GTKFLAGS)
+
+caro.o: caro.c
+	$(CC) $(CFLAGS) caro.c $(GTKFLAGS)
+
+caro2.o: caro2.c
+	$(CC) $(CFLAGS) caro2.c $(GTKFLAGS)
+
+caro_check.o: caro_check.c
+	$(CC) $(CFLAGS) caro_check.c $(GTKFLAGS)
+
+caro_AI.o: caro_AI.c
+	$(CC) $(CFLAGS) caro_AI.c $(GTKFLAGS)
 
 # cleaning everything that can be automatically recreated with "make".
-BINARIES=$(NAME) $(NAME1) $(NAME2)
+BINARIES=caro caro2
 
 .PHONY: clean
 
 clean:
-	rm -rf $(BINARIES)
+	rm -rf $(BINARIES) *.o
