@@ -1,0 +1,25 @@
+# Caro
+
+# Description
+
+A gomoku-like game with addtional rules: A player can only win if: - He/she has exactly 5 continuous pieces (no more or less) - These pieces have at least a head or tail not being blocked by the opponent's piece.
+
+There are 2 modes: 1 player (vs AI) and 2 players
+
+# License
+
+    Copyright (C) 2016 Dang Duong
+
+    Caro is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Caro is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Caro.  If not, see <http://www.gnu.org/licenses/>.
+
