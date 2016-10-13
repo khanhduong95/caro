@@ -2,7 +2,7 @@
 
  * caro_AI.c
 
- * Copyright (C) 20m-1 Dang Duong
+ * Copyright (C) 2016 Dang Duong
 
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
